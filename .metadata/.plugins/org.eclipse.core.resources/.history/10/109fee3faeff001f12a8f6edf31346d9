@@ -1,0 +1,5 @@
+package com.adminavengers.singlewindow.handleesception;
+
+public class GlobalExceptionHandler {
+
+}

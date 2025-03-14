@@ -1,0 +1,8 @@
+package com.adminavengers.singlewindow.handleesception;
+
+public class HandleUserException extends RuntimeException {
+	@Override
+	public String getMessage() {
+		return "User not found";
+	}
+}

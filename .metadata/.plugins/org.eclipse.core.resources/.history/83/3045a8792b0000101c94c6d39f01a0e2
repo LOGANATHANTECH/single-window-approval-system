@@ -1,0 +1,101 @@
+package com.adminavengers.singlewindow.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.adminavengers.singlewindow.handleesception.HandleUserException;
+import com.adminavengers.singlewindow.model.User;
+import com.adminavengers.singlewindow.repository.UserRepository;
+import com.adminavengers.singlewindow.responces.UserResponseStructure;
+
+@CrossOrigin(origins = "*") // ✅ Allows API to be accessed from frontend
+@RestController
+@RequestMapping("/user")
+public class UserController {
+	
+	@Autowired
+	private UserRepository urepo;
+	
+// 1️⃣ **Save User**
+	@PostMapping 
+	public ResponseEntity<UserResponseStructure<User>> saveUser(@RequestBody User user) {
+		urepo.save(user);
+		UserResponseStructure<User> response = new UserResponseStructure<>();
+		response.setStatus(HttpStatus.OK.value());
+		response.setMessage("User has been saved");
+		response.setData(user);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+// 2️⃣ **Retrieve All Users**
+	@GetMapping
+	public ResponseEntity<UserResponseStructure<List<User>>> getAllUsers() {
+		List<User> allUsers = urepo.findAll();
+		UserResponseStructure<List<User>> response = new UserResponseStructure<>();
+
+		if (!allUsers.isEmpty()) {
+			response.setStatus(HttpStatus.OK.value());
+			response.setMessage("All users have been retrieved");
+			response.setData(allUsers);
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		} else {
+			throw new HandleUserException();
+		}
+	}
+	
+// 3️⃣ **Retrieve Single User**
+	@GetMapping("/{id}")
+	public ResponseEntity<UserResponseStructure<User>> getUser(@PathVariable Long id) { // ✅ Fixed `@PathVariable`
+		Optional<User> user = urepo.findById(id);
+		UserResponseStructure<User> response = new UserResponseStructure<>();
+		
+		if (user.isPresent()) {
+			response.setStatus(HttpStatus.OK.value());
+			response.setMessage("User has been retrieved");
+			response.setData(user.get());
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		} else {
+			throw new HandleUserException();
+		}
+	}
+
+// 4️⃣ **Update User**
+	@PutMapping("/{id}")
+	public ResponseEntity<UserResponseStructure<User>> updateUser(@PathVariable Long id, @RequestBody User user) { // ✅ Fixed `@PathVariable`
+		Optional<User> existingUser = urepo.findById(id);
+		UserResponseStructure<User> response = new UserResponseStructure<>();
+		
+		if (existingUser.isPresent()) {
+			user.setId(id); // ✅ Ensure the correct ID is set
+			urepo.save(user);
+			response.setStatus(HttpStatus.OK.value());
+			response.setMessage("User has been updated");
+			response.setData(user);
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		} else {
+			throw new HandleUserException();
+		}
+	}
+
+// 5️⃣ **Delete User**
+	@DeleteMapping("/{id}") // ✅ Fixed `@PutMapping` to `@DeleteMapping`
+	public ResponseEntity<UserResponseStructure<User>> deleteUser(@PathVariable Long id) {
+		Optional<User> user = urepo.findById(id);
+		UserResponseStructure<User> response = new UserResponseStructure<>();
+		
+		if (user.isPresent()) {
+			urepo.delete(user.get());
+			response.setStatus(HttpStatus.OK.value());
+			response.setMessage("User has been deleted");
+			response.setData(user.get());
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		} else {
+			throw new HandleUserException();
+		}
+	}
+}

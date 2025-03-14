@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/admin-dashboard.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <a href="dashboard.html">Home</a>
+            <a href="application-status.html">Applications</a>
+            <a href="notifications.html">Notifications</a>
+            <a href="profile.html">Profile</a>
+            <button onclick="logout()">Logout</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="stats">
+            <h2>Dashboard Overview</h2>
+            <div class="stat-box">
+                <p><strong>Total Applications:</strong> <span id="totalApplications">0</span></p>
+                <p><strong>Pending Approvals:</strong> <span id="pendingApprovals">0</span></p>
+                <p><strong>Approved Applications:</strong> <span id="approvedApplications">0</span></p>
+            </div>
+        </section>
+
+        <section id="applications">
+            <h2>Manage Applications</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Application ID</th>
+                        <th>Entrepreneur Name</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="applicationTable">
+                    <tr><td colspan="4">Loading...</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="user-management">
+            <h2>User Management</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="userTable">
+                    <tr><td colspan="5">Loading...</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Single-Window Approval System</p>
+    </footer>
+</body>
+</html>
