@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Double Slider Sign in/up Form</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+	<div class="container" id="container">
+		<!-- User Sign Up -->
+		<div class="form-container sign-up-container">
+			<form action="user" method="post">
+				<h1>Create Account</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+				</div>
+				<span>or use your email for registration</span>
+				<input type="text" name="name" placeholder="Name" required />
+				<input type="email" name="email" placeholder="Email" required />
+				<input type="password" name="password" placeholder="Password" required />
+				<button>Sign Up</button>
+			</form>
+		</div>
+	
+		<!-- User Sign In -->
+		<div class="form-container sign-in-container">
+			<form action="#">
+				<h1>Sign in</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+				</div>
+				<span>or use your account</span>
+				<input type="email" placeholder="Email" required />
+				<input type="password" placeholder="Password" required />
+				<button id="forgotPasswordBtn" class="forgot-btn">Forgot Password?</button>
+				<button>Sign In</button>
+
+			</form>
+		</div>
+	
+		<!-- Government Officer Sign Up -->
+		<div class="form-container officer-sign-up-container">
+			<form action="#">
+				<h1>Officer Sign Up</h1>
+				<input type="text" placeholder="Full Name" required />
+				<input type="email" placeholder="Official Email" required />
+				<input type="password" placeholder="Password" required />
+				<input type="text" placeholder="Government ID" required />
+				<button>Register</button>
+			</form>
+		</div>
+	
+		<!-- Government Officer Sign In -->
+		<div class="form-container officer-sign-in-container">
+			<form action="#">
+				<h1>Officer Login</h1>
+				<input type="email" placeholder="Official Email" required />
+				<input type="password" placeholder="Password" required />
+				<button id="forgotPasswordBtn" class="forgot-btn">Forgot Password?</button>
+				<button>Login</button>
+			</form>
+		</div>
+	
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Welcome Back!</h1>
+					<p>To keep connected, please log in with your details.</p>
+					<button class="ghost" id="signIn">User Signin</button>
+					<button class="ghost" id="officerSignIn">Officer Signin</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Hello, Friend!</h1>
+					<p>Enter your details and start your journey with us</p>
+					<button class="ghost" id="signUp">User Signup</button>
+					<button class="ghost" id="officerSignUp">Officer Signup</button>
+				</div>
+			</div>
+		</div>
+	</div>
+				<!-- Forgot Password Modal -->
+				<div id="forgotPasswordModal" class="modal">
+					<span class="close">&times;</span>
+					<h2>Reset Password</h2>
+					<input type="email" id="forgotEmail" placeholder="Enter your email" />
+					<button id="sendOtp">Send OTP</button>
+				
+					<!-- OTP Verification Section (Initially Hidden) -->
+					<div id="otpSection">
+						<input type="text" id="otpInput" placeholder="Enter OTP" />
+						<button id="verifyOtp">Verify OTP</button>
+					</div>
+				</div>
+				
+	
+	<script src="script.js"></script>
+</body>
+</html>

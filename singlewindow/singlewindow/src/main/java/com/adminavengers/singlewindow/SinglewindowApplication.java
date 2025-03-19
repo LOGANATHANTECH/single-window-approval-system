@@ -10,9 +10,10 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {
 		"com.adminavengers.singlewindow.controller",
 		"com.adminavengers.singlewindow.repository",
-		"com.adminavengers.singlewindow.responces"
+		"com.adminavengers.singlewindow.responces",
+		"com.adminavengers.singlewindow.handleesception"
 		})
-@EntityScan(basePackages = "com.adminavengers.singlewindow.model")
+@EntityScan(basePackages = "com.adminavengers.singlewindow.entity")
 public class SinglewindowApplication {
 
 	public static void main(String[] args) {

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User_page</title>
+    <link rel="stylesheet" href="/html/css/user_Style.css">
+    <script src="/html/javascript/user_script.js"></script>
+</head>
+<body>
+    <header>
+         <div>
+            <span>
+                <img src="#" alt="logo">
+               <p> Register Your Business </p>
+               <span id="navagation">
+                <a href="#" id="home">Home</a>
+                <a href="#" id="startup">Startup</a>
+                <a href="#" id="blog">Blog</a>
+                <a href="#" id="contactus">Contact_us</a>
+                <a href="#" id="abutus">About Us</a>
+                <a href="#" id="number">Toolfree Number</a>
+               </span>
+            </span>
+
+            <span class="notification-container">
+                <span class="notification-icon" onclick="toggleDropdown()">
+                    <i class="bell_icon"><img src="/images/bell.png" alt="notification"></i>
+                    <span class="notification_count">10</span>
+                </span>
+                <span class="notification-dropdown" id="dropdown">
+                    <ul>
+                        <li>Notification </li>
+                        <li>Notification </li>
+                        <li>Notification </li>
+                    </ul>
+                </span>
+            </span>
+
+            <span class="profile-menu">
+                <button class="profile-btn" onclick="toggleMenu()">Profile</button>
+                <span class="dropdown-menu" id="dropdownMenu">
+                    <a href="#dashboard">Dashboard</a>
+                    <a href="#settings">Settings</a>
+                    <a href="#applications">Your Applications</a>
+                    <a href="#logout">Logout</a>
+                </span>
+            </span>
+        </div>
+ </header>
+ <div class="search_field">
+ <h2>Search for Business</h2>
+ <form action="javascript:void(0);">
+     <label for="search">:</label>
+     <input list="categories" id="search" name="search" placeholder="Select the options">
+     <datalist id="categories">
+         <option value="Education and Learning"></option>
+         <option value="Health and Wellness"></option>
+         <option value="Electricity Water and Local Services"></option>
+         <option value="Travel and Tourism"></option>
+         <option value="Business and Self-employed"></option>
+         <option value="Births Deaths Marriages and Child Care"></option>
+         <option value="Transport and Infrastructure"></option>
+         <option value="Citizenship Visas & Passports"></option>
+     </datalist>
+     <input class="search_btn" type="button" value="Search" onclick="showForm()">
+ </form>
+ </div>
+
+
+ <!-- Education and Learning Form -->
+ <div id="EducationandLearning" class="business-form" style="display:none;">
+    <h3>Education and Learning Registration</h3>
+    <form class="form-container">
+        <div class="form-group">
+            <label for="inst_name">Institution Name:</label>
+            <input type="text" id="inst_name" name="inst_name">
+        </div>
+        <div class="form-group">
+            <label for="inst_type">Institution Type:</label>
+            <input type="text" id="inst_type" name="inst_type">
+        </div>
+        <div class="form-group">
+            <label for="inst_location">Location:</label>
+            <input type="text" id="inst_location" name="inst_location">
+        </div>
+        <div class="form-group">
+            <label for="contact_person">Contact Person:</label>
+            <input type="text" id="contact_person" name="contact_person">
+        </div>
+        <div class="form-group">
+            <label for="contact_number">Contact Number:</label>
+            <input type="text" id="contact_number" name="contact_number">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="upload">Upload Document:</label>
+            <input type="file" id="upload" name="upload">
+        </div>
+        <div class="form-submit">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+</div>
+
+ <!-- Health and Wellness Form -->
+ <div id="HealthandWellness" class="business-form" style="display:none;">
+    <h3>Health and Wellness Registration</h3>
+    <form class="form-container">
+        <div class="form-group">
+            <label for="center_name">Center Name:</label>
+            <input type="text" id="center_name" name="center_name">
+        </div>
+        <div class="form-group">
+            <label for="services_offered">Services Offered:</label>
+            <input type="text" id="services_offered" name="services_offered">
+        </div>
+        <div class="form-group">
+            <label for="center_location">Location:</label>
+            <input type="text" id="center_location" name="center_location">
+        </div>
+        <div class="form-group">
+            <label for="contact_person">Contact Person:</label>
+            <input type="text" id="contact_person" name="contact_person">
+        </div>
+        <div class="form-group">
+            <label for="contact_number">Contact Number:</label>
+            <input type="text" id="contact_number" name="contact_number">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="upload">Upload Document:</label>
+            <input type="file" id="upload" name="upload">
+        </div>
+        <div class="form-submit">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+</div>
+
+ <!-- Electricity, Water and Local Services Form -->
+ <div id="ElectricityWaterandLocalServices" class="business-form" style="display:none;">
+    <h3>Electricity, Water, and Local Services Registration</h3>
+    <form class="form-container">
+        <div class="form-group">
+            <label for="service_name">Service Name:</label>
+            <input type="text" id="service_name" name="service_name">
+        </div>
+        
+        <div class="form-group">
+            <label for="service_type">Service Type:</label>
+            <input type="text" id="service_type" name="service_type">
+        </div>
+        
+        <div class="form-group">
+            <label for="service_location">Location:</label>
+            <input type="text" id="service_location" name="service_location">
+        </div>
+        
+        <div class="form-group">
+            <label for="contact_person">Contact Person:</label>
+            <input type="text" id="contact_person" name="contact_person">
+        </div>
+        
+        <div class="form-group">
+            <label for="contact_number">Contact Number:</label>
+            <input type="text" id="contact_number" name="contact_number">
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+        
+        <div class="form-group">
+            <label for="upload">Upload Document:</label>
+            <input type="file" id="upload" name="upload">
+        </div>
+        
+        <div class="form-group full-width">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+</div>
+
+ <!-- Travel and Tourism Form -->
+ <div id="TravelandTourism" class="business-form" style="display:none;">
+     <h3>Travel and Tourism Registration</h3>
+     <form>
+         <label for="agency_name">Agency Name:</label>
+         <input type="text" id="agency_name" name="agency_name"><br>
+         <label for="services_offered">Services Offered:</label>
+         <input type="text" id="services_offered" name="services_offered"><br>
+         <label for="agency_location">Location:</label>
+         <input type="text" id="agency_location" name="agency_location"><br>
+         <label for="contact_person">Contact Person:</label>
+         <input type="text" id="contact_person" name="contact_person"><br>
+         <label for="contact_number">Contact Number:</label>
+         <input type="text" id="contact_number" name="contact_number"><br>
+         <label for="email">Email:</label>
+         <input type="email" id="email" name="email"><br>
+         <label for="upload">Upload Document:</label>
+         <input type="file" id="upload" name="upload"><br>
+         <input type="submit" value="Register">
+     </form>
+ </div>
+
+ <!-- Business and Self-employed Form -->
+ <div id="BusinessandSelf-employed" class="business-form" style="display:none;">
+     <h3>Business and Self-employed Registration</h3>
+     <form>
+         <label for="business_name">Business Name:</label>
+         <input type="text" id="business_name" name="business_name"><br>
+         <label for="business_type">Business Type:</label>
+         <input type="text" id="business_type" name="business_type"><br>
+         <label for="business_location">Location:</label>
+         <input type="text" id="business_location" name="business_location"><br>
+         <label for="contact_person">Contact Person:</label>
+         <input type="text" id="contact_person" name="contact_person"><br>
+         <label for="contact_number">Contact Number:</label>
+         <input type="text" id="contact_number" name="contact_number"><br>
+         <label for="email">Email:</label>
+         <input type="email" id="email" name="email"><br>
+         <label for="upload">Upload Document:</label>
+         <input type="file" id="upload" name="upload">
+         <input type="submit" value="Register">
+        </form>
+    </div>
+
+
+
+
+             <!-- Births, Deaths, Marriages and Child Care Form -->
+    <div id="BirthsDeathsMarriagesandChildCare" class="business-form" style="display:none;">
+        <h3>Births, Deaths, Marriages and Child Care Registration</h3>
+        <form>
+            <label for="service_name">Service Name:</label>
+            <input type="text" id="service_name" name="service_name"><br>
+            <label for="service_type">Service Type:</label>
+            <input type="text" id="service_type" name="service_type"><br>
+            <label for="service_location">Location:</label>
+            <input type="text" id="service_location" name="service_location"><br>
+            <label for="contact_person">Contact Person:</label>
+            <input type="text" id="contact_person" name="contact_person"><br>
+            <label for="contact_number">Contact Number:</label>
+            <input type="text" id="contact_number" name="contact_number"><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br>
+            <label for="upload">Upload Document:</label>
+            <input type="file" id="upload" name="upload"><br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <!-- Transport and Infrastructure Form -->
+    <div id="TransportandInfrastructure" class="business-form" style="display:none;">
+        <h3>Transport and Infrastructure Registration</h3>
+        <form>
+            <label for="company_name">Company Name:</label>
+            <input type="text" id="company_name" name="company_name"><br>
+            <label for="services_offered">Services Offered:</label>
+            <input type="text" id="services_offered" name="services_offered"><br>
+            <label for="company_location">Location:</label>
+            <input type="text" id="company_location" name="company_location"><br>
+            <label for="contact_person">Contact Person:</label>
+            <input type="text" id="contact_person" name="contact_person"><br>
+            <label for="contact_number">Contact Number:</label>
+            <input type="text" id="contact_number" name="contact_number"><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br>
+            <label for="upload">Upload Document:</label>
+            <input type="file" id="upload" name="upload"><br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <!-- Citizenship, Visas & Passports Form -->
+    <div id="CitizenshipVisas&Passports" class="business-form" style="display:none;">
+        <h3>Citizenship, Visas & Passports Registration</h3>
+        <form>
+            <label for="service_name">Service Name:</label>
+            <input type="text" id="service_name" name="service_name"><br>
+            <label for="service_type">Service Type:</label>
+            <input type="text" id="service_type" name="service_type"><br>
+            <label for="service_location">Location:</label>
+            <input type="text" id="service_location" name="service_location"><br>
+            <label for="contact_person">Contact Person:</label>
+            <input type="text" id="contact_person" name="contact_person"><br>
+            <label for="contact_number">Contact Number:</label>
+            <input type="text" id="contact_number" name="contact_number"><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br>
+            <label for="upload">Upload Document:</label>
+            <input type="file" id="upload" name="upload"><br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+<!--User_Dashboard-->
+    
+ <div class="user_container">
+    <div class="user_header">Welcome to Your Dashboard</div>
+    
+    <div class="user_dashboard">
+        <div class="user_card"><i class="fas fa-file-alt"></i><img src="/images/Docs_img.png" alt=""><br>Apply for Approval</div>
+        <div class="user_card"><i class="fas fa-upload"></i><img src="/images/uplode_IMG.png" alt=""> <br>Upload Documents</div>
+        <div class="user_card"><i class="fas fa-chart-line"></i><img src="/images/track_img.jpeg" alt=""><br>Track Status</div>
+        <div class="user_card"><i class="fas fa-phone"></i><img src="/images/contact_img.png" alt=""><br>Contact Support</div>
+    </div>
+    
+    <div class="user_notifications">
+        <strong>Notifications:</strong>
+        <p>✅ Your Business Registration was approved!</p>
+        <p>⚠️ Missing document in License Application.</p>
+    </div>
+    
+    <div class="user_faq">
+        <h2>FAQs</h2>
+        <div class="user_faq-item"><strong>How long does approval take?</strong><p>It depends on the application type, usually 2-4 weeks.</p></div>
+        <div class="user_faq-item"><strong>What if my application is rejected?</strong><p>You will receive reasons and steps to reapply.</p></div>
+    </div>
+</div>
+
+<div class="user_chatbot" onclick="toggleChat()">💬</div>
+<div class="user_chat-popup" id="chatPopup">
+    <p><strong>I am ChatBot!</strong><br>How can I assist you today?</p>
+</div>
+</body>
+</html>

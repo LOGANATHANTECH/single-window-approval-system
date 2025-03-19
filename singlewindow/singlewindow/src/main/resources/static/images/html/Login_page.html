@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login, Signup & Forgot Password</title>
+  <link href="/html/css/style_sheet.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="Login_page">
+  <div class="form-container">
+    <!-- Login Form -->
+    <div class="form-header" id="form-header">
+      <h2>Login</h2>
+    </div>
+    <div class="form-content" id="form-content">
+      <div id="login-form">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <div class="input-icon"><i class="fas fa-envelope"></i></div>
+          <input type="email" id="login-email" placeholder="Enter your email" required>
+          <div class="error-message" id="login-email-error"></div>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <div class="input-icon"><i class="fas fa-lock"></i></div>
+          <input type="password" id="login-password" placeholder="Enter your password" required>
+        </div>
+        <div class="form-actions">
+          <button id="login-btn">Login</button>
+          <a href="#" class="toggle-form" id="forgot-link">Forgot password?</a>
+        </div>
+        <p class="toggle-form" id="go-to-signup">Don't have an account? <button>Sign Up</button></p>
+      </div>
+      <!-- Signup Form -->
+      <div id="signup-form" style="display:none;">
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <div class="input-icon"><i class="fas fa-envelope"></i></div>
+          <input type="email" id="signup-email" placeholder="Enter your email" required>
+          <div class="error-message" id="signup-email-error"></div>
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <div class="input-icon"><i class="fas fa-lock"></i></div>
+          <input type="password" id="signup-password" placeholder="Enter your password" required>
+        </div>
+        <div class="form-actions">
+          <button id="signup-btn">Signup</button>
+        </div>
+        <p class="toggle-form" id="go-to-login">Already have an account? <button> Login</button></p>
+      </div>
+      <!-- Forgot Password Form -->
+      <div id="forgot-form" style="display:none;">
+        <div class="form-group">
+          <label for="forgot-email">Email</label>
+          <div class="input-icon"><i class="fas fa-envelope"></i></div>
+          <input type="email" id="forgot-email" placeholder="Enter your email" required>
+          <div class="error-message" id="forgot-email-error"></div>
+        </div>
+        <div class="form-actions">
+          <button id="reset-btn">Reset Password</button>
+          <a href="#" class="toggle-form" id="back-to-login">Back to Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+
+  <script>
+    // Email validation function
+    function validateEmail(email) {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return emailRegex.test(email);
+    }
+
+    // Display error message
+    function displayError(fieldId, errorMessage) {
+      const errorElement = document.getElementById(`${fieldId}-error`);
+      errorElement.textContent = errorMessage;
+    }
+
+    // Clear error message
+    function clearError(fieldId) {
+      const errorElement = document.getElementById(`${fieldId}-error`);
+      errorElement.textContent = '';
+    }
+
+    // Form toggle functionality
+    const forgotLink = document.getElementById('forgot-link');
+    const backToLogin = document.getElementById('back-to-login');
+    const goToSignup = document.getElementById('go-to-signup');
+    const goToLogin = document.getElementById('go-to-login');
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const forgotForm = document.getElementById('forgot-form');
+    const formHeader = document.getElementById('form-header');
+    
+    // Handle forgot password link click
+    forgotLink.addEventListener('click', () => {
+      loginForm.style.display = 'none';
+      signupForm.style.display = 'none';
+      forgotForm.style.display = 'block';
+      formHeader.innerHTML = '<h2>Reset Password</h2>';
+      forgotForm.classList.add('fade');
+    });
+
+    // Handle back to login link click
+    backToLogin.addEventListener('click', () => {
+      loginForm.style.display = 'block';
+      signupForm.style.display = 'none';
+      forgotForm.style.display = 'none';
+      formHeader.innerHTML = '<h2>Login</h2>';
+      loginForm.classList.add('fade');
+    });
+    
+    // Toggle to Signup form
+    goToSignup.addEventListener('click', () => {
+      loginForm.style.display = 'none';
+      signupForm.style.display = 'block';
+      formHeader.innerHTML = '<h2>Signup</h2>';
+      signupForm.classList.add('fade');
+    });
+
+    // Toggle to Login form
+    goToLogin.addEventListener('click', () => {
+      loginForm.style.display = 'block';
+      signupForm.style.display = 'none';
+      forgotForm.style.display = 'none';
+      formHeader.innerHTML = '<h2>Login</h2>';
+      loginForm.classList.add('fade');
+    });
+
+    // Handle login button click
+    document.getElementById('login-btn').addEventListener('click', (event) => {
+      const email = document.getElementById('login-email').value;
+      if (!validateEmail(email)) {
+        event.preventDefault();
+        displayError('login-email', 'Please enter a valid email address.');
+      } else {
+        clearError('login-email');
+        alert('Logging in...');
+      }
+    });
+
+    // Handle signup button click
+    document.getElementById('signup-btn').addEventListener('click', (event) => {
+      const email = document.getElementById('signup-email').value;
+      if (!validateEmail(email)) {
+        event.preventDefault();
+        displayError('signup-email', 'Please enter a valid email address.');
+      } else {
+        clearError('signup-email');
+        alert('Signing up...');
+      }
+    });
+
+    // Handle forgot password button click
+    document.getElementById('reset-btn').addEventListener('click', (event) => {
+      const email = document.getElementById('forgot-email').value;
+      if (!validateEmail(email)) {
+        event.preventDefault();
+        displayError('forgot-email', 'Please enter a valid email address.');
+      } else {
+        clearError('forgot-email');
+        alert('Resetting password...');
+      }
+    });
+
+    // Automatically move to the next input field when pressing Enter
+    function moveToNextField(currentFieldId, nextFieldId) {
+      const currentField = document.getElementById(currentFieldId);
+      const nextField = document.getElementById(nextFieldId);
+
+      currentField.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+          event.preventDefault(); // Prevent form submission
+          nextField.focus(); // Move focus to the next field
+        }
+      });
+    }
+    moveToNextField('login-email', 'login-password');
+    moveToNextField('signup-email', 'signup-password');
+    moveToNextField('forgot-email', 'reset-btn');
+  </script>
+</body>
+</html>

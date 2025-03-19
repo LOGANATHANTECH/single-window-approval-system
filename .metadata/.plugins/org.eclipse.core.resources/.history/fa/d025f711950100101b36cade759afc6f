@@ -1,0 +1,5 @@
+package com.adminavengers.singlewindow.controller;
+
+public class ApplicationController {
+
+}
