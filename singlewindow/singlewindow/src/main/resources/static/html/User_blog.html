@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Approval Blog</title>
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease-in-out;
+            scroll-behavior: smooth;
+        }
+        .container {
+            width: 85%;
+            max-width: 1100px;
+            margin: 50px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        /* Section Title */
+        .section-title {
+            width: 100%;
+            text-align: center;
+            font-size: 26px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 10px;
+            position: relative;
+            background: linear-gradient(90deg, #00d4ff, #0078D7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-title::after {
+            content: "";
+            width: 80px;
+            height: 4px;
+            background: #00d4ff;
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        /* Card Styling */
+        .card {
+            width: 430px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease-in-out;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.6);
+        }
+        .card h2 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #00d4ff;
+        }
+        /* Card Content */
+        .card-content {
+            max-height: 120px;
+            overflow: hidden;
+            transition: max-height 0.6s ease-in-out;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .expanded {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        /* Read More Button */
+        .read-more {
+            background: linear-gradient(to right, #00d4ff, #0078D7);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 15px;
+            text-align: center;
+            width: fit-content;
+            margin: 12px auto 0;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .read-more:hover {
+            background: linear-gradient(to right, #0078D7, #00b0ff);
+            box-shadow: 0 0 15px #00d4ff;
+        }
+        .read-more::after {
+            content: "↓";
+            font-size: 14px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .expanded + .read-more::after {
+            transform: rotate(180deg);
+        }
+        /* Dark Mode Toggle */
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            padding: 10px 15px;
+            background: #0078D7;
+            color: white;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 10px #00d4ff;
+        }
+        .toggle-btn:hover {
+            background: #00d4ff;
+        }
+        /* Dark Mode */
+        .dark-mode {
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            color: black;
+        }
+        .dark-mode .card {
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        .dark-mode .toggle-btn {
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toggle-btn" onclick="toggleDarkMode()">🌙 Toggle Mode</div>
+
+    <div class="container">
+        <!-- Section 1: Introduction -->
+        <div class="section-title">🚀 Understanding Business Approval</div>
+        <div class="card">
+            <h2>What is Business Approval?</h2>
+            <div class="card-content">
+                <p>Business approval is the **official authorization** required to operate legally. It includes obtaining **licenses, permits, and government approvals** before launching a business.</p>
+                <p>Our **Single-Window Government Approval Platform** makes this process **efficient and hassle-free** by allowing businesses to apply and track approvals online.</p>
+            </div>
+            <div class="read-more" onclick="toggleReadMore(this)">Read More</div>
+        </div>
+
+        <!-- Section 2: How It Works -->
+        <div class="section-title">💡 How It Works</div>
+        <div class="card">
+            <h2>Step-by-Step Guide</h2>
+            <div class="card-content">
+                <ol>
+                    <li><strong>Register & Log In</strong> – Create an account and verify your identity.</li>
+                    <li><strong>Fill Out Your Application</strong> – Provide business details and upload necessary documents.</li>
+                    <li><strong>Track Your Status</strong> – Get real-time updates on approval progress.</li>
+                    <li><strong>Receive Approval</strong> – Once verified, your business is officially recognized.</li>
+                </ol>
+            </div>
+            <div class="read-more" onclick="toggleReadMore(this)">Read More</div>
+        </div>
+
+        <!-- Section 3: Key Benefits -->
+        <div class="section-title">✨ Why Choose Our Platform?</div>
+        <div class="card">
+            <h2>Advantages of Using Our System</h2>
+            <div class="card-content">
+                <ul>
+                    <li>📄 **Paperless Process** – No more physical paperwork.</li>
+                    <li>⏳ **Faster Approvals** – Automation reduces waiting time.</li>
+                    <li>🔍 **Transparency** – Monitor application status anytime.</li>
+                    <li>🛡️ **Secure & Reliable** – Data encryption ensures protection.</li>
+                </ul>
+            </div>
+            <div class="read-more" onclick="toggleReadMore(this)">Read More</div>
+        </div>
+
+        <!-- Section 4: Security -->
+        <div class="section-title">🔐 How We Protect Your Data</div>
+        <div class="card">
+            <h2>Security Measures</h2>
+            <div class="card-content">
+                <ul>
+                    <li>🔑 **JWT Authentication** – Ensures secure login.</li>
+                    <li>🛡️ **RBAC (Role-Based Access Control)** – Restricts unauthorized access.</li>
+                    <li>🔒 **Encrypted Documents** – Protects sensitive information.</li>
+                    <li>📂 **Cloud Storage** – Access your files from anywhere.</li>
+                </ul>
+            </div>
+            <div class="read-more" onclick="toggleReadMore(this)">Read More</div>
+        </div>
+
+        <!-- Section 5: Upcoming Features -->
+        <div class="section-title">📢 Future Enhancements</div>
+        <div class="card">
+            <h2>Exciting New Features Coming Soon</h2>
+            <div class="card-content">
+                <ul>
+                    <li>🚀 **AI Chatbot Support** – Get instant help with applications.</li>
+                    <li>📊 **Advanced Analytics** – Gain insights into processing trends.</li>
+                    <li>📱 **Mobile App** – Manage approvals from your phone.</li>
+                    <li>💾 **Secure Document Storage** – Store and retrieve files anytime.</li>
+                </ul>
+            </div>
+            <div class="read-more" onclick="toggleReadMore(this)">Read More</div>
+        </div>
+    </div>
+
+    <script>
+        function toggleReadMore(button) {
+            const cardContent = button.previousElementSibling;
+            cardContent.classList.toggle('expanded');
+            button.textContent = cardContent.classList.contains('expanded') ? "Read Less" : "Read More";
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>

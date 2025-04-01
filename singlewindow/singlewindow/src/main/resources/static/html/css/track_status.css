@@ -1,0 +1,95 @@
+/* Background Color */
+body {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Card Styling */
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #333;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Progress Bar */
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin: 30px 0;
+    max-width: 700px;
+    width: 100%;
+    padding: 10px;
+}
+
+/* Line behind steps */
+.progress-line {                
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    width: 80%;
+    height: 4px;
+    background: #a17b7b;
+    transform: translateY(-50%);
+    z-index: -1;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Steps */
+.step {
+    width: 50px;
+    height: 50px;
+    background: #6c757d;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    transition: background 0.5s ease-in-out, transform 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+.step.active {
+    background: #28a745;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Hover Effect */
+.step:hover {
+    transform: scale(1.1);
+}
+
+/* Status List */
+.status-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.status-list li {
+    padding: 8px;
+    font-size: 18px;
+}
+
+/* Table */
+.table {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.table th, .table td {
+    text-align: center;
+}

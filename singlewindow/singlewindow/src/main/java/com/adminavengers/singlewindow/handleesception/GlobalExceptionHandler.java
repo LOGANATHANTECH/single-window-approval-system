@@ -28,4 +28,13 @@ public class GlobalExceptionHandler implements Serializable {
 		
 	}
 	
+	@ExceptionHandler(HandleApplicationException.class)
+	public ResponseEntity<ResponseStructure<String>> handleApplicationException(HandleApplicationException handleApplicationException){
+		ResponseStructure<String> responseStructure=new ResponseStructure<String>();
+		responseStructure.setStatus(HttpStatus.NOT_FOUND.value());
+		responseStructure.setMessage(handleApplicationException.getMessage());
+		responseStructure.setData("Failed");
+		return new ResponseEntity<ResponseStructure<String>>(responseStructure,HttpStatus.NOT_FOUND);
+	}
+	
 }

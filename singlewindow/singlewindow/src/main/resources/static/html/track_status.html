@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Application Status</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/track_status.css">
+    <script src="./javascript/track_status.js"></script>
+</head>
+<body>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Track Application Status</h2>
+
+        <div class="card p-3">
+            <h5 class="text-primary">Application Details</h5>
+            <p><strong>Application ID:</strong> #123456</p>
+            <p><strong>Applicant Name:</strong> John Doe</p>
+            <p><strong>Submission Date:</strong> March 20, 2025</p>
+        </div>
+
+        <h3 class="mt-4 text-info">Application Progress</h3>
+        <div class="progress-container">
+            <div class="progress-line"></div>
+            <div class="step active">1</div>
+            <div class="step active">2</div>
+            <div class="step">3</div>
+            <div class="step">4</div>
+        </div>
+
+        <ul class="status-list">
+            <li><strong>Step 1:</strong> <span class="text-success">Application Submitted ✅</span></li>
+            <li><strong>Step 2:</strong> <span class="text-warning">Under Review ✅</span></li>
+            <li><strong>Step 3:</strong> <span class="text-danger">Approval Pending ⏳</span></li>
+            <li><strong>Step 4:</strong> <span class="text-secondary">Final Approval ⏳</span></li>
+        </ul>
+
+        <h3 class="mt-4 text-warning">Recent Updates</h3>
+        <table class="table table-bordered mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>March 18, 2025</td>
+                    <td class="text-primary">Application Submitted</td>
+                    <td>Awaiting review</td>
+                </tr>
+                <tr>
+                    <td>March 19, 2025</td>
+                    <td class="text-success">Under Review</td>
+                    <td>Verification in progress</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

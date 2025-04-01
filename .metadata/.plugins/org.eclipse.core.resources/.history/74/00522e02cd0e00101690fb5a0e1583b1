@@ -1,0 +1,91 @@
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+ // Forgot Password Functionality
+ const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
+ const forgotPasswordModal = document.getElementById("forgotPasswordModal");
+ const closeModal = document.querySelector(".close");
+ const sendOtpBtn = document.getElementById("sendOtp");
+ const verifyOtpBtn = document.getElementById("verifyOtp");
+ const otpSection = document.getElementById("otpSection");
+ const emailInput = document.getElementById("forgotEmail");
+ const otpInput = document.getElementById("otpInput");
+ let generatedOtp = null;
+
+ forgotPasswordBtn.addEventListener("click", (e) => {
+	 e.preventDefault();
+	 forgotPasswordModal.style.display = "block";
+ });
+
+ closeModal.addEventListener("click", () => {
+	 forgotPasswordModal.style.display = "none";
+	 otpSection.style.display = "none";
+	 emailInput.value = "";
+	 otpInput.value = "";
+ });
+
+ sendOtpBtn.addEventListener("click", () => {
+	 const email = emailInput.value;
+	 if (!email) {
+		 alert("Please enter a valid email!");
+		 return;
+	 }
+	 generatedOtp = Math.floor(100000 + Math.random() * 900000);
+	 console.log("Generated OTP:", generatedOtp);
+	 alert(`OTP sent to ${email}`);
+	 otpSection.style.display = "block";
+ });
+
+ verifyOtpBtn.addEventListener("click", () => {
+	 const enteredOtp = otpInput.value;
+	 if (enteredOtp == generatedOtp) {
+		 alert("OTP Verified! You can now reset your password.");
+		 forgotPasswordModal.style.display = "none";
+	 } else {
+		 alert("Invalid OTP. Try again.");
+	 }
+ });
+ const form = document.getElementById("iamofficerForm");
+ form.addEventListener("submit", function (e) {
+   e.preventDefault(); // Prevent the default form submission
+
+   const formData = new FormData(form);
+   const jsonData = {};
+   formData.forEach((value, key) => {
+     jsonData[key] = value; // Convert form data to JSON object
+   });
+
+   fetch("http://localhost:8080/user", {
+     method: "POST",
+     headers: {
+       "Content-Type": "application/json", // Specify JSON content type
+     },
+     body: JSON.stringify(jsonData),
+   })
+     .then((response) => {
+       if (!response.ok) {
+         throw new Error(`HTTP error! Status: ${response.status}`);
+       }
+       return response.json(); // Parse the JSON response
+     })
+     .then((data) => {
+       if (data.status === 200) {
+         // Redirect to Officer_dashboard.html if the user is verified
+         window.location.href = "Officer_dashboard.html";
+       } else {
+         alert(data.message); // Show the message if the status is not 200
+       }
+     })
+     .catch((error) => {
+       console.error("Error:", error); // Log any errors
+       alert("An error occurred while verifying the user."); // Show an error message
+     });
+ });

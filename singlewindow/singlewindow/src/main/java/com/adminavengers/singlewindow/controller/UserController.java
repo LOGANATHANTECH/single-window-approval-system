@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adminavengers.singlewindow.dto.OfficerData;
 import com.adminavengers.singlewindow.entity.User;
 import com.adminavengers.singlewindow.handleesception.HandleUserException;
 import com.adminavengers.singlewindow.repository.UserRepository;
@@ -37,26 +38,50 @@ public class UserController {
 		ustructur.setData(user);
 		return new ResponseEntity<ResponseStructure<User>>(ustructur,HttpStatus.OK);
 	}
+	@PostMapping("/iamofficer")
+	public ResponseEntity<ResponseStructure<String>> officerData(@RequestBody OfficerData officerData) {
+		Optional<User> user=urepo.findById(officerData.getId());
+		ResponseStructure<String> ustructur=new ResponseStructure<String>();
+	
+			if((user.isPresent()) && (officerData.getEmail().equals(user.get().getEmail()) && officerData.getPassword().equals(user.get().getPassword()))) {
+				
+				ustructur.setStatus(HttpStatus.OK.value());
+				ustructur.setMessage("user has been verified");
+				ustructur.setData("succes");
+				return new ResponseEntity<ResponseStructure<String>>(ustructur,HttpStatus.OK);
+			}else {
+				ustructur.setStatus(HttpStatus.NOT_FOUND.value());
+				ustructur.setMessage("you entered rong email or password");
+				ustructur.setData("Failed");
+				return new ResponseEntity<ResponseStructure<String>>(ustructur,HttpStatus.NOT_FOUND);
+			}
+		
+		
+		
+		
+		
+		
+	}
 	
 	
 	//6.	//to get user data by NameAndPassword
 	
-	@GetMapping("/{email}/{password}")
-	public ResponseEntity<ResponseStructure<List<User>>> fetchByEmailAndPassword(@PathVariable String email,@PathVariable String password) {
-		System.out.println(email+password);
-		List<User> user=urepo.findByEmailAndPassword(email, password);
-		ResponseStructure<List<User>> userstructur=new ResponseStructure<List<User>>();
-		if(user.size()>0) {
-			
-			userstructur.setStatus(HttpStatus.OK.value());
-			userstructur.setMessage("user has been retrived");
-			userstructur.setData(user);
-			return new ResponseEntity<ResponseStructure<List<User>>>(userstructur,HttpStatus.OK);
-					
-		}else {
-			throw new HandleUserException();
-		}
-	}
+//	@GetMapping("/{email}/{password}")
+//	public ResponseEntity<ResponseStructure<List<User>>> fetchByEmailAndPassword(@PathVariable String email,@PathVariable String password) {
+//		System.out.println(email+password);
+//		List<User> user=urepo.findByEmailAndPassword(email, password);
+//		ResponseStructure<List<User>> userstructur=new ResponseStructure<List<User>>();
+//		if(user.size()>0) {
+//			
+//			userstructur.setStatus(HttpStatus.OK.value());
+//			userstructur.setMessage("user has been retrived");
+//			userstructur.setData(user);
+//			return new ResponseEntity<ResponseStructure<List<User>>>(userstructur,HttpStatus.OK);
+//					
+//		}else {
+//			throw new HandleUserException();
+//		}
+//	}
 	
 	
 	
@@ -82,31 +107,31 @@ public class UserController {
 	
 	
 	
-	//2.	//to retrive all user data 
-		@GetMapping("name/{name}")
-		public ResponseEntity<ResponseStructure<List<User>>> getAllUser(@PathVariable String name){
-			
-			List<User> allusers=urepo.findByName(name);
-			
-			ResponseStructure<List<User>> ustructur=new ResponseStructure<List<User>>();
-			
-			if(allusers.size()>0) {
-				ustructur.setStatus(HttpStatus.OK.value());
-				ustructur.setMessage("all users has been retrived");
-				ustructur.setData(allusers);
-				return new ResponseEntity<ResponseStructure<List<User>>>(ustructur,HttpStatus.OK);
-			}else {
-				throw new HandleUserException();
-			}
-			
-			 
-		}
-		
+//	//2.	//to retrive all user data 
+//		@GetMapping("name/{name}")
+//		public ResponseEntity<ResponseStructure<List<User>>> geUserByname(@PathVariable String name){
+//			
+//			List<User> allusers=urepo.findByName(name);
+//			
+//			ResponseStructure<List<User>> ustructur=new ResponseStructure<List<User>>();
+//			
+//			if(allusers.size()>0) {
+//				ustructur.setStatus(HttpStatus.OK.value());
+//				ustructur.setMessage("all users has been retrived");
+//				ustructur.setData(allusers);
+//				return new ResponseEntity<ResponseStructure<List<User>>>(ustructur,HttpStatus.OK);
+//			}else {
+//				throw new HandleUserException();
+//			}
+//			
+//			 
+//		}
+//		
 	
 
 //3.	//to retrive single user data 
 	@GetMapping("/{id}")
-	public ResponseEntity<ResponseStructure<User>> getUser(@RequestBody Long id) {
+	public ResponseEntity<ResponseStructure<User>> getUser(@PathVariable Long id) {
 		
 		Optional<User> user=urepo.findById(id);
 		ResponseStructure<User> ustructur=new ResponseStructure<User>();
@@ -121,7 +146,7 @@ public class UserController {
 	}
 	
 //4.	//to update user data 
-	@PutMapping("/{user}")
+	@PutMapping()
 	public ResponseEntity<ResponseStructure<User>> updateUser(@RequestBody User user) {
 			
 		Optional<User> opuser=urepo.findById(user.getId());
@@ -137,23 +162,23 @@ public class UserController {
 			}
 		}
 
-//5.	//to delete user data 
-		@PutMapping("/{id}")
-		public ResponseEntity<ResponseStructure<User>> deleteUser(@RequestBody Long id) {
-			
-			Optional<User> user=urepo.findById(id);
-			ResponseStructure<User> ustructur=new ResponseStructure<User>();
-			if(user.isPresent()) {
-				urepo.delete(user.get());
-				ustructur.setStatus(HttpStatus.OK.value());
-				ustructur.setMessage("user has been deleted");
-				ustructur.setData(user.get());
-				return new ResponseEntity<ResponseStructure<User>>(ustructur,HttpStatus.OK);
-			}else {
-				throw new HandleUserException();
-			}
-		}
-		
+////5.	//to delete user data 
+//		@PutMapping("/{id}")
+//		public ResponseEntity<ResponseStructure<User>> deleteUser(@PathVariable Long id) {
+//			
+//			Optional<User> user=urepo.findById(id);
+//			ResponseStructure<User> ustructur=new ResponseStructure<User>();
+//			if(user.isPresent()) {
+//				urepo.delete(user.get());
+//				ustructur.setStatus(HttpStatus.OK.value());
+//				ustructur.setMessage("user has been deleted");
+//				ustructur.setData(user.get());
+//				return new ResponseEntity<ResponseStructure<User>>(ustructur,HttpStatus.OK);
+//			}else {
+//				throw new HandleUserException();
+//			}
+//		}
+//		
 
 	
 }

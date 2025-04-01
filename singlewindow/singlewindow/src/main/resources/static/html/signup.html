@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* 🌟 Background Animation */
+        body {
+            background: linear-gradient(135deg, #141e30, #243b55);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* 🌟 Glassmorphism Form */
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        /* 🌟 Floating Title */
+        h2 {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        /* 🌟 Input Fields */
+        .input-box {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .input-box option{
+            background-color: gray;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            outline: none;
+            color: #ffffff;
+            font-size: 16px;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        input:focus, select:focus {
+            border-color: #ff416c;
+            box-shadow: 0px 0px 10px rgba(255, 65, 108, 0.7);
+        }
+
+        /* 🌟 Animated Button */
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #ff4b2b, #ff416c);
+            transform: scale(1.05);
+            box-shadow: 0px 5px 15px rgba(255, 65, 108, 0.5);
+        }
+
+        /* 🌟 Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 4px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* 🌟 Responsive */
+        @media (max-width: 420px) {
+            .form-container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+        <h2>User Registration</h2>
+
+        <form id="userForm">
+            <div class="input-box">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+
+            <div class="input-box">
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+            </div>
+
+            <div class="input-box">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+
+            <div class="input-box">
+                <select id="role" name="role" required>
+                    <option value="" disabled selected>Select Your Role</option>
+                    <option value="ENTREPRENEUR">Entrepreneur</option>
+                    <option value="GOVERNMENT_OFFICIAL">Government Official</option>
+                    <option value="ADMIN">Admin</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+    </div>
+
+    <script>
+        // 🌙 Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+                document.body.style.background = "linear-gradient(135deg, #000, #222)";
+            } else {
+                document.body.style.background = "linear-gradient(135deg, #141e30, #243b55)";
+            }
+        }
+
+        // 🌟 Form Submission
+        document.getElementById("userForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get form values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const role = document.getElementById("role").value;
+
+            // Create JSON object
+            const userData = { name, email, password, role };
+
+            // Send data to API
+            fetch("http://localhost:8080/user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("User registered successfully!");
+                console.log("Success:", data);
+            })
+            .catch(error => {
+                alert("Error registering user.");
+                console.error("Error:", error);
+            });
+        });
+    </script>
+
+</body>
+</html>
