@@ -4,6 +4,9 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+			<item value="pie"/>
+			<item value="form"/>
+			<item value="login"/>
 			<item value="get"/>
 			<item value="getMessage"/>
 		</list>

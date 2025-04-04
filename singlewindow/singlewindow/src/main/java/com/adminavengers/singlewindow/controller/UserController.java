@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adminavengers.singlewindow.dto.EntrepreneurData;
 import com.adminavengers.singlewindow.dto.OfficerData;
 import com.adminavengers.singlewindow.entity.User;
 import com.adminavengers.singlewindow.handleesception.HandleUserException;
@@ -28,7 +30,7 @@ public class UserController {
 	@Autowired
 	UserRepository urepo;
 	
-//1.	//to save the user record
+	//to save the user record
 	@PostMapping
 	public ResponseEntity<ResponseStructure<User>> saveuser(@RequestBody User user) {
 		urepo.save(user);
@@ -38,6 +40,8 @@ public class UserController {
 		ustructur.setData(user);
 		return new ResponseEntity<ResponseStructure<User>>(ustructur,HttpStatus.OK);
 	}
+	
+	//verify the officer 
 	@PostMapping("/iamofficer")
 	public ResponseEntity<ResponseStructure<String>> officerData(@RequestBody OfficerData officerData) {
 		Optional<User> user=urepo.findById(officerData.getId());
@@ -55,11 +59,22 @@ public class UserController {
 				ustructur.setData("Failed");
 				return new ResponseEntity<ResponseStructure<String>>(ustructur,HttpStatus.NOT_FOUND);
 			}
-		
-		
-		
-		
-		
+	}
+//	@SuppressWarnings("null")
+	@PostMapping("/iamentrepreneur")
+	public ResponseEntity<ResponseStructure<String>> verifyEntrepreneur(@RequestBody EntrepreneurData entrepreneurData){
+			Optional<User> verifyedUser=urepo.findByEmailAndPassword(entrepreneurData.getEmail(), entrepreneurData.getPassword());
+			
+			if(verifyedUser.isPresent()) {
+				ResponseStructure<String> userData=new ResponseStructure<String>();
+				userData.setData("user verifyed");
+				userData.setMessage("Succes");
+				userData.setStatus(HttpStatus.ACCEPTED.value());
+				return new ResponseEntity<ResponseStructure<String>>(userData,HttpStatus.ACCEPTED);
+			}else {
+				throw new HandleUserException();
+			}
+			
 		
 	}
 	

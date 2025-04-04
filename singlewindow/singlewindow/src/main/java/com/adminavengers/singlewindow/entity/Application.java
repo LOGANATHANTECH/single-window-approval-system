@@ -17,10 +17,26 @@ public class Application {
 	private User user;
 	
 	@Column(nullable = false)
-	private String applicationType;
+	private String businessname;
 	
-	@Column(nullable = false,length = 500)
-	private String description;
+	@Column(nullable = false)
+	private String companyname;
+	
+	@Column(nullable = false)
+	private String companyaddress;
+	
+	@Column(nullable = false)
+	private String businesstype;
+	
+	@Column(nullable = false,length = 10)
+	private String phonenumber;
+	
+	@Column(nullable = false)
+	private String email;
+	
+	
+	@Column(nullable = false,length = 50)
+	private String descriptionaboutbusiness;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
@@ -29,8 +45,6 @@ public class Application {
 	@Column(nullable = false,updatable = false)
 	private LocalDateTime submittedAt=LocalDateTime.now();
 
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -47,20 +61,60 @@ public class Application {
 		this.user = user;
 	}
 
-	public String getApplicationType() {
-		return applicationType;
+	public String getBusinessname() {
+		return businessname;
 	}
 
-	public void setApplicationType(String applicationType) {
-		this.applicationType = applicationType;
+	public void setBusinessname(String businessname) {
+		this.businessname = businessname;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getCompanyname() {
+		return companyname;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setCompanyname(String companyname) {
+		this.companyname = companyname;
+	}
+
+	public String getCompanyaddress() {
+		return companyaddress;
+	}
+
+	public void setCompanyaddress(String companyaddress) {
+		this.companyaddress = companyaddress;
+	}
+
+	public String getBusinesstype() {
+		return businesstype;
+	}
+
+	public void setBusinesstype(String businesstype) {
+		this.businesstype = businesstype;
+	}
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getDescriptionaboutbusiness() {
+		return descriptionaboutbusiness;
+	}
+
+	public void setDescriptionaboutbusiness(String descriptionaboutbusiness) {
+		this.descriptionaboutbusiness = descriptionaboutbusiness;
 	}
 
 	public Status getStatus() {
@@ -78,6 +132,9 @@ public class Application {
 	public void setSubmittedAt(LocalDateTime submittedAt) {
 		this.submittedAt = submittedAt;
 	}
+
+	
+	
 	
 	
 	//toString

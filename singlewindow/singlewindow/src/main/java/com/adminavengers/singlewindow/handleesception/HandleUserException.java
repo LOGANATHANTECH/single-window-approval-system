@@ -8,6 +8,6 @@ public class HandleUserException extends RuntimeException {
 
 	@Override
 	public String getMessage() {
-		return "Data not found in db";
+		return "rong user";
 	}
 }
