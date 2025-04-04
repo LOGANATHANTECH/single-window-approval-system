@@ -18,12 +18,6 @@
 </head>
 <body>
 <<<<<<< HEAD
-=======
->>>>>>>
-<h1>Welcome, New Entrepreneur!</h1>
-<p>This is your local version of the content.</p>
-
-
 	<header class="navbar navbar-expand-lg navbar-dark">
 		<div class="container-fluid">
 			<span class="navbar-brand"> <img src="#" alt="logo"

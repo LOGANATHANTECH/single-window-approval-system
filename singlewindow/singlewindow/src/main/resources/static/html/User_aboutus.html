@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Business Approval Hub</title>
+    <script src="./javascript/load_header.js"></script>
     <style>
         /* Google Font */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Courier+Prime&display=swap');
@@ -15,14 +16,22 @@
             color: #333;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
             min-height: 100vh;
             position: relative;
             overflow-y: auto;
             overflow-x: hidden;
+            padding-bottom: 50px;
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            color: #fff;
+            padding: 15px 20px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
         }
 
         /* Particle Effects */
@@ -62,6 +71,9 @@
             text-align: center;
             margin: 20px 0;
             color: white;
+        }
+        .info {
+            color: whitesmoke;
         }
         .container h2 {
             font-size: 28px;
@@ -123,7 +135,7 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
         }
-        .team-member h4 {
+        .team-member h4,.type {
             color: #4facfe;
             font-size: 18px;
             margin-bottom: 5px;
@@ -207,15 +219,15 @@
             <div class="team">
                 <div class="team-member">
                     <h4>Vemuri karthik</h4>
-                    <p>Front End Developer</p>
+                    <p class="type">Front End Developer</p>
                 </div>
                 <div class="team-member">
                     <h4>Dhinikaran S</h4>
-                    <p>UI Desiginer</p>
+                    <p class="type">UI Desiginer</p>
                 </div>
                 <div class="team-member">
                     <h4>Loganathan V</h4>
-                    <p>Back End Developer</p>
+                    <p class="type">Back End Developer</p>
                 </div>
             </div>
         </div>
