@@ -86,55 +86,37 @@ document.addEventListener('click', function(event) {
 });
 
 /* Script for business registration forms */
+
 function showForm() {
-    let searchInput = document.getElementById("search");
-    let selectedValue = searchInput.value.trim();
-    let forms = document.getElementsByClassName("business-form");
-
-    // Validate input
-    if (!selectedValue) {
-        alert("Please select a category from the list");
-        return;
-    }
-
-    // Hide all forms with smooth transition
-    Array.from(forms).forEach(form => {
-        form.style.opacity = "0";
-        setTimeout(() => {
-            form.style.display = "none";
-        }, 200);
-    });
-
-    // Show selected form with animation
-    let formId = selectedValue.replace(/\s+/g, '');
-    let selectedForm = document.getElementById(formId);
-    
-    if (selectedForm) {
-        setTimeout(() => {
-            selectedForm.style.display = "block";
-            setTimeout(() => {
-                selectedForm.style.opacity = "1";
-            }, 50);
-        }, 250);
+    const form = document.getElementById('approval-form');
+    if (form.style.display === 'none' || form.style.display === '') {
+        form.style.display = 'block';
     } else {
-        console.warn("No matching form found for:", selectedValue);
-        alert("Please select a valid category from the list");
+        form.style.display = 'none';
     }
 }
+document.getElementById('business-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent default form submission
 
-/* Enable "Enter" key to move to the next input field */
-document.addEventListener("DOMContentLoaded", function () {
-    let inputs = document.querySelectorAll("input, select, textarea");
-
-    inputs.forEach((input, index) => {
-        input.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                let nextInput = inputs[index + 1];
-                if (nextInput) {
-                    nextInput.focus();
-                }
-            }
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+    
+    try {
+        const response = await fetch('http://localhost:8080/applicationdata', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         });
-    });
+
+        if (response.ok) {
+            window.location.href = 'status.html';
+        } else {
+            alert('Failed to submit the form. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    }
 });

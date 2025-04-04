@@ -6,13 +6,13 @@
     <title>About Us - Business Approval Hub</title>
     <style>
         /* Google Font */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Courier+Prime&display=swap');
 
         /* General Styling */
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: white;
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            color: #333;
             margin: 0;
             padding: 0;
             display: flex;
@@ -20,26 +20,56 @@
             align-items: center;
             flex-direction: column;
             min-height: 100vh;
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* Particle Effects */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 8%);
+            background-size: 3vmin 3vmin;
+            animation: float 15s infinite linear;
+        }
+
+        body::after {
+            background-size: 2vmin 2vmin;
+            animation-duration: 20s;
+            opacity: 0.5;
         }
         .container {
             width: 90%;
             max-width: 900px;
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
             backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
             margin: 20px 0;
+            color: white;
         }
         .container h2 {
             font-size: 28px;
             font-weight: 600;
             text-transform: uppercase;
-            background: linear-gradient(90deg, #00d4ff, #0078D7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: white;
             margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
         .info {
             font-size: 16px;
@@ -47,22 +77,25 @@
             margin-bottom: 20px;
         }
         .section {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
             margin: 10px 0;
             text-align: left;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease-in-out;
+            color: #333;
         }
         .section:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
         }
         .section h3 {
-            color: #00d4ff;
+            color: #4facfe;
             font-size: 20px;
             margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
         .section p {
             font-size: 14px;
@@ -76,22 +109,43 @@
             margin-top: 20px;
         }
         .team-member {
-            background: rgba(255, 255, 255, 0.15);
+            background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
             padding: 15px;
             width: 250px;
             border-radius: 10px;
             text-align: center;
             margin: 10px;
             transition: all 0.3s ease-in-out;
+            color: #37474f;
         }
         .team-member:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
         }
         .team-member h4 {
-            color: #00d4ff;
+            color: #4facfe;
             font-size: 18px;
             margin-bottom: 5px;
+            font-family: 'Courier Prime', monospace;
+            border-right: 2px solid #4facfe;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3s steps(100, End) forwards;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { 
+                width: 100%;
+                border-right: transparent;
+            }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #00d4ff; }
         }
         .team-member p {
             font-size: 14px;
@@ -101,9 +155,10 @@
             margin-top: 20px;
         }
         .contact a {
-            color: #00d4ff;
+            color: #4facfe;
             text-decoration: none;
             font-weight: bold;
+            transition: all 0.3s ease;
         }
         .contact a:hover {
             text-decoration: underline;
@@ -151,16 +206,16 @@
             <h3>👥 Meet Our Team</h3>
             <div class="team">
                 <div class="team-member">
-                    <h4>John Doe</h4>
-                    <p>Founder & CEO</p>
+                    <h4>Vemuri karthik</h4>
+                    <p>Front End Developer</p>
                 </div>
                 <div class="team-member">
-                    <h4>Jane Smith</h4>
-                    <p>Head of Operations</p>
+                    <h4>Dhinikaran S</h4>
+                    <p>UI Desiginer</p>
                 </div>
                 <div class="team-member">
-                    <h4>Emily Johnson</h4>
-                    <p>Lead Developer</p>
+                    <h4>Loganathan V</h4>
+                    <p>Back End Developer</p>
                 </div>
             </div>
         </div>

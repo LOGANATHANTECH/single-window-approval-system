@@ -6,6 +6,7 @@
     <title>User_page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/User_registration.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -57,442 +58,47 @@
             </div>
         </div>
     </header>
-    
- <div class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h2 class="section-heading text-center mb-4">Search for Business</h2>
-            <div class="search_field">
-                <form action="javascript:void(0);" class="w-100">
-                    <div class="search-container">
-                        <input list="categories" id="search" name="search" class="form-control" placeholder="Select the options">
-                        <button class="search_btn" type="button" onclick="showForm()">Search</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-                <datalist id="categories">
-         <option value="Education and Learning"></option>
-         <option value="Health and Wellness"></option>
-         <option value="Electricity Water and Local Services"></option>
-         <option value="Travel and Tourism"></option>
-         <option value="Business and Self-employed"></option>
-         <option value="Births Deaths Marriages and Child Care"></option>
-         <option value="Transport and Infrastructure"></option>
-         <option value="Citizenship Visas & Passports"></option>
-     </datalist>
- </form>
- </div>
 
-
- <!-- Education and Learning Form -->
- <div id="EducationandLearning" class="business-form container mt-4" style="display:none;">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h3 class="card-title text-center mb-4">Education and Learning Registration</h3>
-            <form class="form-container row g-3" action="submit" method="POST">
-        <div class="col-md-6">
-                    <label for="inst_name" class="form-label">Institution Name</label>
-                    <input type="text" class="form-control" id="inst_name" name="inst_name" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="inst_type" class="form-label">Institution Type</label>
-                    <input type="text" class="form-control" id="inst_type" name="inst_type" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="inst_location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="inst_location" name="inst_location" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_person" class="form-label">Contact Person</label>
-                    <input type="text" class="form-control" id="contact_person" name="contact_person" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_number" class="form-label">Contact Number</label>
-                    <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="col-12">
-                    <label for="upload" class="form-label">Upload Document</label>
-                    <input type="file" class="form-control" id="upload" name="upload" required>
-                </div>
-                <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary px-4">Register</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
-</div>
-
- <!-- Health and Wellness Form -->
- <div id="HealthandWellness" class="business-form container mt-4" style="display:none;">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h3 class="card-title text-center mb-4">Health and Wellness Registration</h3>
-            <form class="form-container row g-3" action="submit" method="POST">
-        <div class="col-md-6">
-                    <label for="center_name" class="form-label">Center Name</label>
-                    <input type="text" class="form-control" id="center_name" name="center_name" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="services_offered" class="form-label">Services Offered</label>
-                    <input type="text" class="form-control" id="services_offered" name="services_offered" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="center_location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="center_location" name="center_location" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_person" class="form-label">Contact Person</label>
-                    <input type="text" class="form-control" id="contact_person" name="contact_person" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_number" class="form-label">Contact Number</label>
-                    <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="col-12">
-                    <label for="upload" class="form-label">Upload Document</label>
-                    <input type="file" class="form-control" id="upload" name="upload" required>
-                </div>
-                <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary px-4">Register</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
-</div>
-
- <!-- Electricity, Water and Local Services Form -->
- <div id="ElectricityWaterandLocalServices" class="business-form container mt-4" style="display:none;">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h3 class="card-title text-center mb-4">Electricity, Water, and Local Services Registration</h3>
-            <form class="form-container row g-3" accept="submit" method="POST" >
-        <div class="col-md-6">
-                    <label for="service_name" class="form-label">Service Name</label>
-                    <input type="text" class="form-control" id="service_name" name="service_name" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="service_type" class="form-label">Service Type</label>
-                    <input type="text" class="form-control" id="service_type" name="service_type" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="service_location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="service_location" name="service_location" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_person" class="form-label">Contact Person</label>
-                    <input type="text" class="form-control" id="contact_person" name="contact_person" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_number" class="form-label">Contact Number</label>
-                    <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="col-12">
-                    <label for="upload" class="form-label">Upload Document</label>
-                    <input type="file" class="form-control" id="upload" name="upload" required>
-                </div>
-                <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary px-4">Register</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
-</div>
-
- <!-- Travel and Tourism Form -->
-<div id="TravelandTourism" class="business-form container mt-4" style="display:none;">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h3 class="card-title text-center mb-4">Travel and Tourism Registration</h3>
-            <form class="form-container row g-3" action="submit" method="POST">
-        <div class="col-md-6">
-                    <label for="agency_name" class="form-label">Agency Name</label>
-                    <input type="text" class="form-control" id="agency_name" name="agency_name" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="services_offered" class="form-label">Services Offered</label>
-                    <input type="text" class="form-control" id="services_offered" name="services_offered" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="agency_location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="agency_location" name="agency_location" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_person" class="form-label">Contact Person</label>
-                    <input type="text" class="form-control" id="contact_person" name="contact_person" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_number" class="form-label">Contact Number</label>
-                    <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="col-12">
-                    <label for="upload" class="form-label">Upload Document</label>
-                    <input type="file" class="form-control" id="upload" name="upload" required>
-                </div>
-                <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary px-4">Register</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
-</div>
-
-<!-- Business and Self-employed Form -->
-<div id="BusinessandSelf-employed" class="business-form container mt-4" style="display:none;">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h3 class="card-title text-center mb-4">Business and Self-employed Registration</h3>
-            <form class="form-container row g-3" action="submit" method="POST">
-        <div class="col-md-6">
-                    <label for="business_name" class="form-label">Business Name</label>
-                    <input type="text" class="form-control" id="business_name" name="business_name" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="business_type" class="form-label">Business Type</label>
-                    <input type="text" class="form-control" id="business_type" name="business_type" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="business_location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="business_location" name="business_location" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_person" class="form-label">Contact Person</label>
-                    <input type="text" class="form-control" id="contact_person" name="contact_person" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_number" class="form-label">Contact Number</label>
-                    <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="col-12">
-                    <label for="upload" class="form-label">Upload Document</label>
-                    <input type="file" class="form-control" id="upload" name="upload" required>
-                </div>
-                <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary px-4">Register</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
-</div>
-
-<!-- Births, Deaths, Marriages and Child Care Form -->
-<div id="BirthsDeathsMarriagesandChildCare" class="business-form container mt-4" style="display:none;">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h3 class="card-title text-center mb-4">Births, Deaths, Marriages and Child Care Registration</h3>
-            <form class="form-container row g-3" action="submit" method="POST">
-        <div class="col-md-6">
-                    <label for="service_name" class="form-label">Service Name</label>
-                    <input type="text" class="form-control" id="service_name" name="service_name" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="service_type" class="form-label">Service Type</label>
-                    <input type="text" class="form-control" id="service_type" name="service_type" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="service_location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="service_location" name="service_location" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_person" class="form-label">Contact Person</label>
-                    <input type="text" class="form-control" id="contact_person" name="contact_person" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_number" class="form-label">Contact Number</label>
-                    <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="col-12">
-                    <label for="upload" class="form-label">Upload Document</label>
-                    <input type="file" class="form-control" id="upload" name="upload" required>
-                </div>
-                <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary px-4">Register</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
-</div>
-
-<!-- Transport and Infrastructure Form -->
-<div id="TransportandInfrastructure" class="business-form container mt-4" style="display:none;">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h3 class="card-title text-center mb-4">Transport and Infrastructure Registration</h3>
-            <form class="form-container row g-3" action="submit" method="POST">
-        <div class="col-md-6">
-                    <label for="company_name" class="form-label">Company Name</label>
-                    <input type="text" class="form-control" id="company_name" name="company_name" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="service_type" class="form-label">Service Type</label>
-                    <input type="text" class="form-control" id="service_type" name="service_type" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="company_location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="company_location" name="company_location" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_person" class="form-label">Contact Person</label>
-                    <input type="text" class="form-control" id="contact_person" name="contact_person" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_number" class="form-label">Contact Number</label>
-                    <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="col-12">
-                    <label for="upload" class="form-label">Upload Document</label>
-                    <input type="file" class="form-control" id="upload" name="upload" required>
-                </div>
-                <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary px-4">Register</button>
-                </div>
-        <div class="form-group">
-            <label for="services_offered">Services Offered:</label>
-            <input type="text" id="services_offered" name="services_offered">
-        </div>
-        <div class="form-group">
-            <label for="company_location">Location:</label>
-            <input type="text" id="company_location" name="company_location">
-        </div>
-        <div class="form-group">
-            <label for="contact_person">Contact Person:</label>
-            <input type="text" id="contact_person" name="contact_person">
-        </div>
-        <div class="form-group">
-            <label for="contact_number">Contact Number:</label>
-            <input type="text" id="contact_number" name="contact_number">
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
-        </div>
-        <div class="form-group">
-            <label for="upload">Upload Document:</label>
-            <input type="file" id="upload" name="upload">
-        </div>
-        <div class="form-submit">
-            <input type="submit" value="Register">
-        </div>
-            </form>
-        </div>
-    </div>
-    </div>
-</div>
-
-<!-- Citizenship, Visas & Passports Form -->
-<div id="CitizenshipVisas&Passports" class="business-form" style="display:none;">
-    <h3>Citizenship, Visas & Passports Registration</h3>
-    <form class="form-container" action="submit" method="POST">
-        <div class="col-md-6">
-                    <label for="service_name" class="form-label">Service Name</label>
-                    <input type="text" class="form-control" id="service_name" name="service_name" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="service_type" class="form-label">Service Type</label>
-                    <input type="text" class="form-control" id="service_type" name="service_type" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="service_location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="service_location" name="service_location" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_person" class="form-label">Contact Person</label>
-                    <input type="text" class="form-control" id="contact_person" name="contact_person" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="contact_number" class="form-label">Contact Number</label>
-                    <input type="tel" class="form-control" id="contact_number" name="contact_number" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="col-12">
-                    <label for="upload" class="form-label">Upload Document</label>
-                    <input type="file" class="form-control" id="upload" name="upload" required>
-                </div>
-                <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary px-4">Register</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
-</div>
 <!--User_Dashboard-->
     
- <div class="container mt-5">
+<div class="container mt-5">
     <div class="card shadow-lg border-0 rounded-3 mb-4">
         <div class="card-header bg-primary text-white py-3">
             <h3 class="text-center mb-0">Welcome to Your Dashboard</h3>
         </div>
         
         <div class="card-body p-2">
-            <div class="row g-2"  style="display: flex; justify-content: space-evenly;">
+            <div class="row g-2" style="display: flex; justify-content: space-evenly;">
                 <div class="col-md-2 col-sm-10">
-                    <div class="card h-90 shadow-sm hover-card" onclick="document.getElementById('search').focus()">
+                    <div class="card h-90 shadow-sm hover-card" onclick="showForm()">
                         <div class="card-body text-center">
-                            <img src="../images/Docs_img.png" alt="" class="img-fluid mb-3" style="max-height: 100px">
+                            <img src="/images/Docs_img.png" alt="" height="100px">
                             <h5 class="card-title">Apply for Approval</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-6">
-                    <div class="card h-100 shadow-sm hover-card" onclick="document.getElementById('search').focus()">
+                    <div class="card h-100 shadow-sm hover-card">
                         <div class="card-body text-center">
-                            <img src="../images/uplode_IMG.png" alt="" class="img-fluid mb-3" style="max-height: 100px">
+                            <img src="/images/uplode_IMG.png" alt="" height="100px">
                             <h5 class="card-title">Upload Documents</h5>
                         </div>
-                    </div>
+                    </div>     
                 </div>
                 <div class="col-md-2 col-sm-6">
                     <a href="./track_status.html" class="text-decoration-none">
-                    <div class="card h-100 shadow-sm hover-card">
-                        <div class="card-body text-center">
-                            <img src="../images/track_img.jpeg" alt="" class="img-fluid mb-3" style="max-height: 100px">
-                            <h5 class="card-title">Track Status</h5>
+                        <div class="card h-100 shadow-sm hover-card">
+                            <div class="card-body text-center">
+                                <img src="/images/track_img.jpeg" alt="" height="100px">
+                                <h5 class="card-title">Track Status</h5>
+                            </div>
                         </div>
-                    </div>
                     </a>
                 </div>
                 <div class="col-md-2 col-sm-6">
                     <div class="card h-100 shadow-sm hover-card">
                         <div class="card-body text-center">
-                            <img src="../images/contact_img.png" alt="" class="img-fluid mb-3" style="max-height: 100px">
+                            <img src="/images/contact_img.png" alt="" height="100px">
                             <h5 class="card-title">Contact Support</h5>
                         </div>
                     </div>
@@ -500,7 +106,59 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Business Information Form -->
+    <div class="container form-container" id="approval-form">
+        <h2>Business Information Form</h2>
+        <form id="business-form">
+            <div class="mb-3">
+                <label for="business-name" class="form-label">Business Name:</label>
+                <input type="text" id="business-name" name="businessname" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="company-name" class="form-label">Company Name:</label>
+                <input type="text" id="company-name" name="companyname" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="company-address" class="form-label">Company Address:</label>
+                <textarea id="company-address" name="companyaddress" rows="3" class="form-control" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="business-type" class="form-label">Business Type:</label>
+                <select id="business-type" name="businesstype" class="form-select" required>
+                    <option value="" disabled selected>--Select Business Type--</option>
+                    <option value="retail">Retail</option>
+                    <option value="service">Service</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="technology">Technology</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="phone-number" class="form-label">Phone Number:</label>
+                <input type="tel" id="phone-number" name="phonenumber" class="form-control" pattern="[0-9]{10}" maxlength="10" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description About Business:</label>
+                <textarea id="description" name="descriptionaboutbusiness" rows="4" class="form-control" minlength="50" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</div>
+
+    <!--notification section-->
     <div class="user_notifications">
         <strong>Notifications:</strong>
         <p>✅ Your Business Registration was approved!</p>
@@ -519,5 +177,19 @@
     <p><strong>I am ChatBot!</strong><br>How can I assist you today?</p>
 </div>
 <script src="./javascript/User_registration.js"></script>
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Business Information Form</title>
+    <!-- Bootstrap CSS -->
+</head>
+<body>
 </body>
 </html>
