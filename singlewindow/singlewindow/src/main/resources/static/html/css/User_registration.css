@@ -164,7 +164,7 @@ header div {
 .dropdown-menu {
     display: none;
     position: absolute;
-    background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
+    background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
     color: #37474f;
     min-width: 150px;
     border-radius: 4px;
