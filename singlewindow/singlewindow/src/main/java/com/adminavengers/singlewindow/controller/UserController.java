@@ -61,16 +61,17 @@ public class UserController {
 			}
 	}
 //	@SuppressWarnings("null")
+	//verify the entrepreneur
 	@PostMapping("/iamentrepreneur")
-	public ResponseEntity<ResponseStructure<String>> verifyEntrepreneur(@RequestBody EntrepreneurData entrepreneurData){
+	public ResponseEntity<ResponseStructure<User>> verifyEntrepreneur(@RequestBody EntrepreneurData entrepreneurData){
 			Optional<User> verifyedUser=urepo.findByEmailAndPassword(entrepreneurData.getEmail(), entrepreneurData.getPassword());
 			
 			if(verifyedUser.isPresent()) {
-				ResponseStructure<String> userData=new ResponseStructure<String>();
-				userData.setData("user verifyed");
+				ResponseStructure<User> userData=new ResponseStructure<User>();
+				userData.setData(verifyedUser.get());
 				userData.setMessage("Succes");
 				userData.setStatus(HttpStatus.ACCEPTED.value());
-				return new ResponseEntity<ResponseStructure<String>>(userData,HttpStatus.ACCEPTED);
+				return new ResponseEntity<ResponseStructure<User>>(userData,HttpStatus.ACCEPTED);
 			}else {
 				throw new HandleUserException();
 			}

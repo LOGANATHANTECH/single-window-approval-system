@@ -35,7 +35,7 @@ public class Application {
 	private String email;
 	
 	
-	@Column(nullable = false,length = 50)
+	@Column(nullable = false)
 	private String descriptionaboutbusiness;
 	
 	@Enumerated(EnumType.STRING)

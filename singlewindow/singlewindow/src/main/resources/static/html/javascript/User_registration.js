@@ -1,3 +1,4 @@
+import { sharedUserData } from './user_script.js';
 /* Script for profile button */
 function toggleMenu() {
     let menu = document.getElementById("dropdownMenu");
@@ -88,7 +89,7 @@ document.addEventListener('click', function(event) {
 /* Script for business registration forms */
 
 function showForm() {
-    const form = document.getElementById('approval-form');
+    const form = document.getElementById('business-form');
     if (form.style.display === 'none' || form.style.display === '') {
         form.style.display = 'block';
     } else {
@@ -99,10 +100,11 @@ document.getElementById('business-form').addEventListener('submit', async functi
     event.preventDefault(); // Prevent default form submission
 
     const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData.entries());
-    
+    let formdata = Object.fromEntries(formData.entries());
+    formdata.user=sharedUserData;
+	const data=formdata;
     try {
-        const response = await fetch('http://localhost:8080/applicationdata', {
+        const response = await fetch('http://localhost:8080/application', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -111,7 +113,7 @@ document.getElementById('business-form').addEventListener('submit', async functi
         });
 
         if (response.ok) {
-            window.location.href = 'status.html';
+            window.location.href = 'track_status.html';
         } else {
             alert('Failed to submit the form. Please try again.');
         }

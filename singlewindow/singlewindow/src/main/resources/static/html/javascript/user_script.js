@@ -22,6 +22,12 @@ const emailInput = document.getElementById("forgotEmail");
 const otpInput = document.getElementById("otpInput");
 let generatedOtp = null;
 
+let userdata=null;
+
+export function sharedUserData(){
+	return userdata;
+}
+
 forgotPasswordBtn.addEventListener("click", (e) => {
     e.preventDefault();
     forgotPasswordModal.style.display = "block";
@@ -95,6 +101,10 @@ document.getElementById('signInForm').addEventListener('submit', function(event)
             // Redirect to the user_register.html page on success
             console.log('Success:', data.message);
             alert(`Success: ${data.message}\nRedirecting to registration page...`);
+			console.log('user data', data.data);
+			alert(data.data);
+			userdata=data.data;
+			
             window.location.href = 'User_Registration.html';
         } else {
             // Handle cases where status is not 202
