@@ -87,17 +87,17 @@ document.addEventListener('click', function(event) {
 });
 
 /* Script for business registration forms */
-
-function showForm() {
-    const form = document.getElementById('business-form');
-    if (form.style.display === 'none' || form.style.display === '') {
-        form.style.display = 'block';
-    } else {
-        form.style.display = 'none';
+  document.addEventListener('DOMContentLoaded', function () {
+    const card = document.getElementById('applyApprovalCard');
+    if (card) {
+      card.addEventListener('click', function () {
+        const modal = new bootstrap.Modal(document.getElementById('approvalModal'));
+        modal.show();
+      });
     }
-}
+  });
 document.getElementById('business-form').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Prevent default form submission
+	event.preventDefault();// Prevent default form submission
 
     const formData = new FormData(event.target);
     let formdata = Object.fromEntries(formData.entries());

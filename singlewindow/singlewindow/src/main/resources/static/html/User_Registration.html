@@ -4,17 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>User_page</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"rel="stylesheet">
 <link rel="stylesheet" href="./css/User_registration.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <header class="navbar navbar-expand-lg navbar-dark">
@@ -76,13 +69,14 @@
 				<div class="row g-2"
 					style="display: flex; justify-content: space-evenly;">
 					<div class="col-md-2 col-sm-10">
-						<div class="card h-90 shadow-sm hover-card" onclick="showForm()">
+						<div class="card h-90 shadow-sm hover-card" id="applyApprovalCard" data-bs-toggle="modal" data-bs-target="#approvalModal">
 							<div class="card-body text-center">
 								<img src="/images/Docs_img.png" alt="" height="100px">
 								<h5 class="card-title">Apply for Approval</h5>
 							</div>
 						</div>
 					</div>
+					
 					<div class="col-md-2 col-sm-6">
 						<div class="card h-100 shadow-sm hover-card">
 							<div class="card-body text-center">
@@ -112,68 +106,73 @@
 					</div>
 				</div>
 			</div>
-		</a>
-		</div>
-
-		<!-- Business Information Form -->
-		<div class="container form-container" id="approval-form">
-			<h2>Business Information Form</h2>
-			<form id="business-form">
-				<div class="mb-3">
-					<label for="business-name" class="form-label">Business
-						Name:</label> <input type="text" id="business-name" name="businessname"
-						class="form-control" required>
-				</div>
-
-				<div class="mb-3">
-					<label for="company-name" class="form-label">Company Name:</label>
-					<input type="text" id="company-name" name="companyname"
-						class="form-control" required>
-				</div>
-
-				<div class="mb-3">
-					<label for="company-address" class="form-label">Company
-						Address:</label>
-					<textarea id="company-address" name="companyaddress" rows="3"
-						class="form-control" required></textarea>
-				</div>
-
-				<div class="mb-3">
-					<label for="business-type" class="form-label">Business
-						Type:</label> <select id="business-type" name="businesstype"
-						class="form-select" required>
-						<option value="" disabled selected>--Select Business
-							Type--</option>
-						<option value="retail">Retail</option>
-						<option value="service">Service</option>
-						<option value="manufacturing">Manufacturing</option>
-						<option value="technology">Technology</option>
-						<option value="others">Others</option>
-					</select>
-				</div>
-
-				<div class="mb-3">
-					<label for="phone-number" class="form-label">Phone Number:</label>
-					<input type="tel" id="phone-number" name="phonenumber"
-						class="form-control" pattern="[0-9]{10}" maxlength="10" required>
-				</div>
-
-				<div class="mb-3">
-					<label for="email" class="form-label">Email:</label> <input
-						type="email" id="email" name="email" class="form-control" required>
-				</div>
-
-				<div class="mb-3">
-					<label for="description" class="form-label">Description
-						About Business:</label>
-					<textarea id="description" name="descriptionaboutbusiness" rows="4"
-						class="form-control" minlength="10" required></textarea>
-				</div>
-
-				<button type="submit" class="submit-btn">Submit</button>
-			</form>
+			</a>
 		</div>
 	</div>
+
+<!-- Business Information Form -->
+<div class="modal fade" id="approvalModal" tabindex="-1" aria-labelledby="approvalModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+	  <div class="modal-content form-glass">
+		<div class="modal-header border-0">
+		  <h5 class="modal-title" id="approvalModalLabel"><i class="fas fa-building"></i> Business Information</h5>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+		  <form id="business-form">
+			<div class="input-row">
+			  <div class="input-half">
+				<label for="business-name" class="form-label">Business Name</label>
+				<input type="text" id="business-name" name="businessname" class="form-control" required>
+			  </div>
+			  <div class="input-half">
+				<label for="company-name" class="form-label">Company Name</label>
+				<input type="text" id="company-name" name="companyname" class="form-control" required>
+			  </div>
+			</div>
+  
+			<div class="input-row">
+			  <div class="input-half">
+				<label for="company-address" class="form-label">Company Address</label>
+				<textarea id="company-address" name="companyaddress" rows="3" class="form-control" required></textarea>
+			  </div>
+			  <div class="input-half">
+				<label for="business-type" class="form-label">Business Type</label>
+				<select id="business-type" name="businesstype" class="form-select" required>
+				  <option value="" disabled selected>--Select Type--</option>
+				  <option value="retail">Retail</option>
+				  <option value="service">Service</option>
+				  <option value="manufacturing">Manufacturing</option>
+				  <option value="technology">Technology</option>
+				  <option value="others">Others</option>
+				</select>
+			  </div>
+			</div>
+  
+			<div class="input-row">
+			  <div class="input-half">
+				<label for="phone-number" class="form-label">Phone Number</label>
+				<input type="tel" id="phone-number" name="phonenumber" class="form-control" pattern="[0-9]{10}" maxlength="10" required>
+			  </div>
+			  <div class="input-half">
+				<label for="email" class="form-label">Email</label>
+				<input type="email" id="email" name="email" class="form-control" required>
+			  </div>
+			</div>
+  
+			<div class="form-group">
+			  <label for="description" class="form-label">Description About Business</label>
+			  <textarea id="description" name="descriptionaboutbusiness" rows="4" class="form-control" minlength="50" required></textarea>
+			</div>
+  
+			<button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Submit</button>
+		  </form>
+		</div>
+	  </div>
+	</div>
+  </div>
+  
+  
 
 	<!--notification section-->
 	<div class="container mt-5">
@@ -204,5 +203,6 @@
 		</p>
 	</div>
 	<script src="./javascript/User_registration.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

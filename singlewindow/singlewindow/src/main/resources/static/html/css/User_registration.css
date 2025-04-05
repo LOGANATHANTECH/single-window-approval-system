@@ -979,33 +979,105 @@ textarea, select, input {
 /* style for forms */
 /* Form Styling */
 
-.form-container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: none; /* Initially hidden */
-}
-.form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333333;
-}
-.submit-btn {
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
+
+  .form-glass {
+    background: rgba(255, 255, 255, 0.75); /* increased opacity */
+    border-radius: 20px;
+    padding: 40px 30px;
+    max-width: 900px;
     width: 100%;
-}
-.submit-btn:hover {
-    background-color: #0056b3;
-}
-.hover-card {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.8s ease;
+    color: #1f1f1f;
+
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 28px;
+    color: #222;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .form-control, .form-select, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #1f1f1f;
+    font-size: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus,
+  .form-select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #66a6ff;
+    box-shadow: 0 0 10px rgba(102, 166, 255, 0.3);
+    background-color: #fff;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .input-half {
+    flex: 1;
+    min-width: 240px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .submit-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #ff6ec4 0%, #7873f5 100%);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  }
+
+  @media (max-width: 600px) {
+    .form-glass {
+      padding: 30px 20px;
+    }
+
+    .input-row {
+      flex-direction: column;
+    }
+  }.hover-card {
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -1015,6 +1087,7 @@ textarea, select, input {
 }
 label {
     font-weight: bold;
+    
 }
 textarea, select, input {
     margin-bottom: 15px;
@@ -1041,16 +1114,6 @@ textarea, select, input {
     background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     border-radius: 2px;
 }
-
-.search-container {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    width: 100%;
-}
-
-
-
 .business-form {
     margin: 20px auto;
     max-width: 1200px;
