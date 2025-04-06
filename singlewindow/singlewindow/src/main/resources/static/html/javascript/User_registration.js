@@ -89,7 +89,7 @@ document.addEventListener('click', function(event) {
 /* Script for business registration forms */
 
 function showForm() {
-    const form = document.getElementById('business-form');
+    const form = document.getElementById('approval-form');
     if (form.style.display === 'none' || form.style.display === '') {
         form.style.display = 'block';
     } else {
