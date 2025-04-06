@@ -87,6 +87,7 @@ document.addEventListener('click', function(event) {
 });
 
 /* Script for business registration forms */
+<<<<<<< HEAD
 
 function showForm() {
     const form = document.getElementById('approval-form');
@@ -94,10 +95,19 @@ function showForm() {
         form.style.display = 'block';
     } else {
         form.style.display = 'none';
+=======
+  document.addEventListener('DOMContentLoaded', function () {
+    const card = document.getElementById('applyApprovalCard');
+    if (card) {
+      card.addEventListener('click', function () {
+        const modal = new bootstrap.Modal(document.getElementById('approvalModal'));
+        modal.show();
+      });
+>>>>>>> e43e7c8deef68b641d533e72436045f0b9efb21b
     }
-}
+  });
 document.getElementById('business-form').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Prevent default form submission
+	event.preventDefault();// Prevent default form submission
 
     const formData = new FormData(event.target);
     let formdata = Object.fromEntries(formData.entries());
