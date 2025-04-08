@@ -4,9 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Government Approval Dashboard</title>
-<link rel="stylesheet" href="./css/Officer_dashboard.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<link rel="stylesheet" href="./css/Officer_dashboard.css">
 </head>
 <body>
 	<nav>
@@ -133,27 +132,80 @@
 
 
 
-	<section id="approval-section" class="container my-4 p-4 border rounded shadow-lg" style="display: none;">
-    <h2 class="text-center mb-4">Approval Requests</h2>
-    <div id="notification" class="alert alert-warning text-center" role="alert">New Approval Request!</div>
-    <div class="documents mb-3" id="approval-documents">
-        <!-- Placeholder for documents -->
-        <p class="text-muted text-center">No documents available.</p>
-    </div>
-    <div id="applicationContainer"></div>
-</section>
-
-
-	<section id="approved-section" class="section-content"
-		style="display: none;">
-		<h2>Approved</h2>
-		<div class="documents" id="approved-documents"></div>
+	<section id="approval-section" class="section-content container my-4 p-4 border rounded shadow-lg" style="display: none;">
+		<h2 class="text-center mb-4">Approval Requests</h2>
+	
+		<!-- Approval Table -->
+		<div class="table-responsive">
+			<table class="table table-striped table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th>#</th>
+						<th>Applicant Name</th>
+						<th>Application ID</th>
+						<th>Department</th>
+						<th>Date Submitted</th>
+						<th>Status</th>
+						<th>View Document</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody id="approvalTableBody">
+					<!-- Rows will be dynamically inserted here using JS -->
+					<tr>
+						<td>1</td>
+						<td>John Smith</td>
+						<td>APP12345</td>
+						<td>Fire Department</td>
+						<td>2025-04-07</td>
+						<td><span class="badge badge-warning">Pending</span>
+						</td>
+						<td><a href="#" class="btn btn-sm btn-info">View</a></td>
+						<td>
+							<button class="btn btn-success btn-sm">Approve</button>
+							<button class="btn btn-danger btn-sm">Reject</button>
+						</td>
+					</tr>
+					<!-- Add more sample rows or populate via JS -->
+				</tbody>
+			</table>
+		</div>
 	</section>
 
-	<section id="rejected-section" class="section-content"
-		style="display: none;">
+	<section id="approved-section" class="section-content container my-4 p-4 border rounded shadow-lg" style="display: none;">
+		<h2>Approved</h2>
+		<div class="documents" id="approved-documents"></div>
+		<table class="table table-striped table-bordered">
+			<thead class="thead-dark">
+				<tr>
+					<th>#</th>
+					<th>Applicant Name</th>
+					<th>Application ID</th>
+					<th>Department</th>
+					<th>Date</th>
+					<th>Document</th>
+				</tr>
+			</thead>
+			<tbody id="approvedTableBody"></tbody>
+		</table>
+	</section>
+
+	<section id="rejected-section" class="section-content container my-4 p-4 border rounded shadow-lg"style="display: none;">
 		<h2>Rejected</h2>
 		<div class="documents" id="rejected-documents"></div>
+		<table class="table table-striped table-bordered">
+			<thead class="thead-dark">
+				<tr>
+					<th>#</th>
+					<th>Applicant Name</th>
+					<th>Application ID</th>
+					<th>Department</th>
+					<th>Date</th>
+					<th>Document</th>
+				</tr>
+			</thead>
+			<tbody id="rejectedTableBody"></tbody>
+		</table>
 	</section>
 
 	<section id="profile-section" class="section-content"
@@ -193,5 +245,7 @@
 
 
 	<script src="./javascript/Officer_dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 </html>
