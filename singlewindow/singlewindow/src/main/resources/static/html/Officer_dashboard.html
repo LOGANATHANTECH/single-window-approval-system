@@ -1,184 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Government Approval Dashboard</title>
-    <link rel="stylesheet" href="./css/Officer_dashboard.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Approval Dashboard</title>
+<link rel="stylesheet" href="./css/Officer_dashboard.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#" id="home-btn">Home</a></li>
-            <li><a href="#" id="dashboard-btn">Dashboard</a></li>
-            <li><a href="#" id="approval-requests-btn">Approval Requests</a></li>
-            <li><a href="#" id="approved-btn">Approved</a></li>
-            <li><a href="#" id="rejected-btn">Rejected</a></li>
-            <li><a href="#" id="profile-btn">Profile</a></li>
-            <li><a href="#" id="logout-btn" class="btn logout">Logout</a></li>
-        </ul>
-    </nav>
-    <!-- <header>
+	<nav>
+		<ul>
+			<li><a href="#" id="home-btn">Home</a></li>
+			<li><a href="#" id="dashboard-btn">Dashboard</a></li>
+			<li><a href="#" id="approval-requests-btn">Approval Requests</a></li>
+			<li><a href="#" id="approved-btn">Approved</a></li>
+			<li><a href="#" id="rejected-btn">Rejected</a></li>
+			<li><a href="#" id="profile-btn">Profile</a></li>
+			<li><a href="#" id="logout-btn" class="btn logout">Logout</a></li>
+		</ul>
+	</nav>
+	<!-- <header>
         <h1>Government Approval Dashboard</h1>
     </header> -->
-    
-    <section class="home-section section-content active" id="home-section">
-        <section id="home" class="home-section">
-            <!-- Hero Banner -->
-            <div class="hero">
-                <h1>Welcome to OneStop Kairos Approvals</h1>
-                <p>Your one-stop solution for seamless business approvals and registrations.</p>
-                <a href="./user_login.html" class="btn-primary">Get Started</a>
-            </div>
-        
-            <!-- Features Section -->
-            <div class="features">
-                <h2>Why Choose Us?</h2>
-                <div class="feature-cards">
-                    <div class="feature">
-                        <img src="./images/fast-approval.png" alt="Fast Approval">
-                        <h3>Fast Approvals</h3>
-                        <p>Get your business registered and approved in record time.</p>
-                    </div>
-                    <div class="feature">
-                        <img src="./images/secure.png" alt="Secure & Reliable">
-                        <h3>Secure & Reliable</h3>
-                        <p>We ensure the highest level of security for your data and approvals.</p>
-                    </div>
-                    <div class="feature">
-                        <img src="./images/support.png" alt="24/7 Support">
-                        <h3>24/7 Support</h3>
-                        <p>Our expert team is here to assist you anytime you need.</p>
-                    </div>
-                </div>
-            </div>
-        
-            <!-- Testimonials -->
-            <div class="testimonials">
-                <h2>What Our Users Say</h2>
-                <div class="testimonial-slider">
-                    <div class="testimonial">
-                        <p>"OneStop Kairos made my business registration process smooth and hassle-free!"</p>
-                        <h4>- John Doe, Startup Owner</h4>
-                    </div>
-                    <div class="testimonial">
-                        <p>"Amazing service! Got my approvals in no time. Highly recommend!"</p>
-                        <h4>- Sarah Lee, Business Consultant</h4>
-                    </div>
-                </div>
-            </div>
-        
-            <!-- Latest News or Blog -->
-            <div class="latest-news">
-                <h2>Latest Updates</h2>
-                <div class="news-container">
-                    <div class="news-item">
-                        <img src="./images/news1.jpg" alt="News 1">
-                        <h3>New Business Approval Guidelines in 2024</h3>
-                        <p>Read about the latest changes in the business registration process.</p>
-                        <a href="#">Read More</a>
-                    </div>
-                    <div class="news-item">
-                        <img src="./images/news2.jpg" alt="News 2">
-                        <h3>5 Tips for Faster Business Registration</h3>
-                        <p>Save time and avoid delays with these expert tips.</p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </section>  
-    </section>
-    
-    <section class="dashboard-section section-content" id="dashboard-section" style="display: none;">
-        <h2>Dashboard Overview</h2>
-    
-        <div class="charts-row">
-            <div class="chart-container">
-                <canvas id="approvalChart"></canvas>
-                <p>Approval Status</p>
-            </div>
-    
-            <div class="chart-container">
-                <canvas id="pendingChart"></canvas>
-                <p>Pending Requests</p>
-            </div>
-    
-            <div class="chart-container">
-                <canvas id="rejectedChart"></canvas>
-                <p>Rejection Reasons</p>
-            </div>
-        </div>
-    
-        <div class="charts-row">
-            <div class="chart-container">
-                <canvas id="departmentChart"></canvas>
-                <p>Department-Wise Approvals</p>
-            </div>
-    
-            <div class="chart-container">
-                <canvas id="monthlyChart"></canvas>
-                <p>Monthly Approval Trends</p>
-            </div>
-        </div>
-    </section>
-    
 
-    
-    
-    <section id="approval-section" class="section-content" style="display: none;">
-        <h2>Approval Requests</h2>
-    <div id="notification" class="notification">New Approval Request!</div>
-        <div class="documents" id="approval-documents"></div>
-    </section>
+	<section class="home-section section-content active" id="home-section">
+		<section id="home" class="home-section">
+			<!-- Hero Banner -->
+			<div class="hero">
+				<h1>Welcome to OneStop Kairos Approvals</h1>
+				<p>Your one-stop solution for seamless business approvals and
+					registrations.</p>
+				<a href="./user_login.html" class="btn-primary">Get Started</a>
+			</div>
 
-    <section id="approved-section" class="section-content" style="display: none;">
-        <h2>Approved</h2>
-        <div class="documents" id="approved-documents"></div>
-    </section>
-    
-    <section id="rejected-section" class="section-content" style="display: none;">
-        <h2>Rejected</h2>
-        <div class="documents" id="rejected-documents"></div>
-    </section>
-    
-    <section id="profile-section" class="section-content" style="display: none;">
-        <h2>Profile</h2>
-        <section class="profile-setup">
-            <h2>Profile Settings</h2>
-            <div class="profile-container">
-                <!-- Profile Picture Upload -->
-                <div class="profile-pic">
-                    <img id="profileImage" src="#" alt="Profile Picture">
-                    <input type="file" id="uploadPic" accept="image/*" onchange="previewImage(event)">
-                    <label for="uploadPic" class="upload-btn">Change Profile Picture</label>
-                </div>
-        
-                <!-- User Information Form -->
-                <form id="profileForm">
-                    <label for="fullName">Full Name:</label>
-                    <input type="text" id="fullName" placeholder="Enter your full name" required>
-        
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" placeholder="Enter your email" required>
-        
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" placeholder="Enter your phone number" required>
-        
-                    <label for="password">New Password:</label>
-                    <input type="password" id="password" placeholder="Enter new password">
-        
-                    <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" id="confirmPassword" placeholder="Confirm new password">
-        
-                    <button type="submit">Save Changes</button>
-                </form>
-            </div>
-        </section>
-    </section>
-    
-    
-    <script src="./javascript/Officer_dashboard.js"></script>
+			<!-- Features Section -->
+			<div class="features">
+				<h2>Why Choose Us?</h2>
+				<div class="feature-cards">
+					<div class="feature">
+						<img src="./images/fast-approval.png" alt="Fast Approval">
+						<h3>Fast Approvals</h3>
+						<p>Get your business registered and approved in record time.</p>
+					</div>
+					<div class="feature">
+						<img src="./images/secure.png" alt="Secure & Reliable">
+						<h3>Secure & Reliable</h3>
+						<p>We ensure the highest level of security for your data and
+							approvals.</p>
+					</div>
+					<div class="feature">
+						<img src="./images/support.png" alt="24/7 Support">
+						<h3>24/7 Support</h3>
+						<p>Our expert team is here to assist you anytime you need.</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Testimonials -->
+			<div class="testimonials">
+				<h2>What Our Users Say</h2>
+				<div class="testimonial-slider">
+					<div class="testimonial">
+						<p>"OneStop Kairos made my business registration process
+							smooth and hassle-free!"</p>
+						<h4>- John Doe, Startup Owner</h4>
+					</div>
+					<div class="testimonial">
+						<p>"Amazing service! Got my approvals in no time. Highly
+							recommend!"</p>
+						<h4>- Sarah Lee, Business Consultant</h4>
+					</div>
+				</div>
+			</div>
+
+			<!-- Latest News or Blog -->
+			<div class="latest-news">
+				<h2>Latest Updates</h2>
+				<div class="news-container">
+					<div class="news-item">
+						<img src="./images/news1.jpg" alt="News 1">
+						<h3>New Business Approval Guidelines in 2024</h3>
+						<p>Read about the latest changes in the business registration
+							process.</p>
+						<a href="#">Read More</a>
+					</div>
+					<div class="news-item">
+						<img src="./images/news2.jpg" alt="News 2">
+						<h3>5 Tips for Faster Business Registration</h3>
+						<p>Save time and avoid delays with these expert tips.</p>
+						<a href="#">Read More</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+
+	<section class="dashboard-section section-content"
+		id="dashboard-section" style="display: none;">
+		<h2>Dashboard Overview</h2>
+
+		<div class="charts-row">
+			<div class="chart-container">
+				<canvas id="approvalChart"></canvas>
+				<p>Approval Status</p>
+			</div>
+
+			<div class="chart-container">
+				<canvas id="pendingChart"></canvas>
+				<p>Pending Requests</p>
+			</div>
+
+			<div class="chart-container">
+				<canvas id="rejectedChart"></canvas>
+				<p>Rejection Reasons</p>
+			</div>
+		</div>
+
+		<div class="charts-row">
+			<div class="chart-container">
+				<canvas id="departmentChart"></canvas>
+				<p>Department-Wise Approvals</p>
+			</div>
+
+			<div class="chart-container">
+				<canvas id="monthlyChart"></canvas>
+				<p>Monthly Approval Trends</p>
+			</div>
+		</div>
+	</section>
+
+
+
+
+	<section id="approval-section" class="container my-4 p-4 border rounded shadow-lg" style="display: none;">
+    <h2 class="text-center mb-4">Approval Requests</h2>
+    <div id="notification" class="alert alert-warning text-center" role="alert">New Approval Request!</div>
+    <div class="documents mb-3" id="approval-documents">
+        <!-- Placeholder for documents -->
+        <p class="text-muted text-center">No documents available.</p>
+    </div>
+    <div id="applicationContainer"></div>
+</section>
+
+
+	<section id="approved-section" class="section-content"
+		style="display: none;">
+		<h2>Approved</h2>
+		<div class="documents" id="approved-documents"></div>
+	</section>
+
+	<section id="rejected-section" class="section-content"
+		style="display: none;">
+		<h2>Rejected</h2>
+		<div class="documents" id="rejected-documents"></div>
+	</section>
+
+	<section id="profile-section" class="section-content"
+		style="display: none;">
+		<h2>Profile</h2>
+		<section class="profile-setup">
+			<h2>Profile Settings</h2>
+			<div class="profile-container">
+				<!-- Profile Picture Upload -->
+				<div class="profile-pic">
+					<img id="profileImage" src="#" alt="Profile Picture"> <input
+						type="file" id="uploadPic" accept="image/*"
+						onchange="previewImage(event)"> <label for="uploadPic"
+						class="upload-btn">Change Profile Picture</label>
+				</div>
+
+				<!-- User Information Form -->
+				<form id="profileForm">
+					<label for="fullName">Full Name:</label> <input type="text"
+						id="fullName" placeholder="Enter your full name" required>
+
+					<label for="email">Email:</label> <input type="email" id="email"
+						placeholder="Enter your email" required> <label
+						for="phone">Phone Number:</label> <input type="tel" id="phone"
+						placeholder="Enter your phone number" required> <label
+						for="password">New Password:</label> <input type="password"
+						id="password" placeholder="Enter new password"> <label
+						for="confirmPassword">Confirm Password:</label> <input
+						type="password" id="confirmPassword"
+						placeholder="Confirm new password">
+
+					<button type="submit">Save Changes</button>
+				</form>
+			</div>
+		</section>
+	</section>
+
+
+	<script src="./javascript/Officer_dashboard.js"></script>
 </body>
 </html>

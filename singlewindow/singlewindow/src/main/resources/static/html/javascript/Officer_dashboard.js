@@ -93,12 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function loadApprovalRequests() {
         approvalDocuments.innerHTML = "<h3>Pending Approvals</h3>";
-        pendingApprovals.forEach(doc => {
-            const div = document.createElement("div");
-            div.classList.add("document-item");
-            div.innerHTML = `<strong>${doc.name}</strong> - ${doc.applicant}`;
-            approvalDocuments.appendChild(div);
-        });
+        //
         showNotification("Loaded Pending Approvals");
     }
 
@@ -278,3 +273,58 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("You have been logged out successfully!");
     });
 });
+
+
+// Fetch data from the API and render it on the page
+fetch('http://localhost:8080/application', {
+    method: 'GET', // Assuming it's a GET request; update if it's different
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+    .then(response => {
+        if (response.ok) {
+            return response.json(); // Parse the JSON response
+        } else {
+            throw new Error('Failed to retrieve data from the API');
+        }
+    })
+    .then(data => {
+        if (data.status === 200) {
+            // Call the function to render data
+            renderApplications(data.data);
+        } else {
+            alert(`Error: ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+        alert('An error occurred. Please try again later.');
+    });
+
+// Function to render applications on the HTML page
+function renderApplications(applications) {
+    const applicationContainer = document.getElementById('applicationContainer'); // Ensure this ID exists in your HTML
+
+    applications.forEach(application => {
+        const applicationCard = document.createElement('div');
+        applicationCard.classList.add('card', 'mb-3'); // Bootstrap card component
+
+        applicationCard.innerHTML = `
+            <div class="card-body">
+                <h5 class="card-title">Application ID: ${application.id}</h5>
+                <p class="card-text"><strong>Business Name:</strong> ${application.businessname}</p>
+                <p class="card-text"><strong>Company Name:</strong> ${application.companyname}</p>
+                <p class="card-text"><strong>Company Address:</strong> ${application.companyaddress}</p>
+                <p class="card-text"><strong>Business Type:</strong> ${application.businesstype}</p>
+                <p class="card-text"><strong>Phone Number:</strong> ${application.phonenumber}</p>
+                <p class="card-text"><strong>Email:</strong> ${application.email}</p>
+                <p class="card-text"><strong>Description:</strong> ${application.descriptionaboutbusiness}</p>
+                <p class="card-text"><strong>Status:</strong> ${application.status}</p>
+                <p class="card-text"><strong>Submitted At:</strong> ${new Date(application.submittedAt).toLocaleString()}</p>
+            </div>
+        `;
+
+        applicationContainer.appendChild(applicationCard);
+    });
+}

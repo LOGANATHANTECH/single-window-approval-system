@@ -1,5 +1,12 @@
-import { sharedUserData } from './user_script.js';
+//import { sharedUserData } from './user_script.js';
 /* Script for profile button */
+
+// Import the globalUserData variable
+//import { globalUserData } from './user_script.js';
+//console.log('Accessing Global User Data from Another File:', globalUserData);
+//alert(globalUserData)
+
+
 function toggleMenu() {
     let menu = document.getElementById("dropdownMenu");
     if (menu) {
@@ -86,49 +93,78 @@ document.addEventListener('click', function(event) {
     }
 });
 
-/* Script for business registration forms */
-<<<<<<< HEAD
 
-function showForm() {
-    const form = document.getElementById('approval-form');
-    if (form.style.display === 'none' || form.style.display === '') {
-        form.style.display = 'block';
-    } else {
-        form.style.display = 'none';
-=======
-  document.addEventListener('DOMContentLoaded', function () {
-    const card = document.getElementById('applyApprovalCard');
-    if (card) {
-      card.addEventListener('click', function () {
-        const modal = new bootstrap.Modal(document.getElementById('approvalModal'));
-        modal.show();
-      });
->>>>>>> e43e7c8deef68b641d533e72436045f0b9efb21b
-    }
-  });
-document.getElementById('business-form').addEventListener('submit', async function(event) {
-	event.preventDefault();// Prevent default form submission
 
-    const formData = new FormData(event.target);
-    let formdata = Object.fromEntries(formData.entries());
-    formdata.user=sharedUserData;
-	const data=formdata;
-    try {
-        const response = await fetch('http://localhost:8080/application', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+// JavaScript Code for Form Submission with shareduserdata and Redirection
+// JavaScript Code for Form Submission with Hardcoded User Object
+document.getElementById("business-form").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent default form submission
+alert("hi logu");
+// Retrieve userdata from sessionStorage
+debugger;
+    const userdataJSON = sessionStorage.getItem("userdata");
+    console.log("Raw userdata from session:", userdataJSON);
+	
+	// Parse userdata
+	    let userdata = null;
+	    if (userdataJSON) {
+	        try {
+	            userdata = JSON.parse(userdataJSON);
+	            console.log("Parsed user object:", userdata);
+	        } catch (err) {
+	            console.error("Failed to parse userdata:", err);
+	            alert("Invalid userdata found. Please login again.");
+	            return;
+	        }
+	    } else {
+	        alert("No user data found. Please login first.");
+	        return;
+	    }
+
+	
+	console.log(userdataJSON);
+    const formData = {
+        businessname: document.getElementById("businessname").value,
+        companyname: document.getElementById("companyname").value,
+        companyaddress: document.getElementById("companyaddress").value,
+        businesstype: document.getElementById("businesstype").value,
+        phonenumber: parseInt(document.getElementById("phonenumber").value), // Convert to number
+        email: document.getElementById("email").value,
+        descriptionaboutbusiness: document.getElementById("descriptionaboutbusiness").value,
+        user: userdata // Hardcoded user object
+    };
+
+    console.log("Payload Sent to API:", formData);
+
+    // Send data to API
+    fetch("http://localhost:8080/application", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData) // Convert formData to JSON string
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json(); // Parse JSON response
+            } else {
+                throw new Error("Failed to submit form. Please try again.");
+            }
+        })
+        .then(data => {
+            // Handle API response
+            if (data.status === 200) {
+                alert(data.message); // Show success message
+                console.log("API Response:", data);
+
+                // Redirect to track_status.html
+                window.location.href = "track_status.html";
+            } else {
+                alert("Unexpected response status: " + data.status);
+            }
+        })
+        .catch(error => {
+            alert("Error: " + error.message);
+            console.error("Error:", error);
         });
-
-        if (response.ok) {
-            window.location.href = 'track_status.html';
-        } else {
-            alert('Failed to submit the form. Please try again.');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
-    }
 });
