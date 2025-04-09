@@ -1316,3 +1316,6 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact org.glassfish
 2025-04-09 17:08:45,706 [Worker-160: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2025-04-09 17:08:45,801 [Worker-160: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 44 resources from src\main\resources to target\classes
 2025-04-09 17:08:45,843 [Worker-160: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\do_nont_touch\college\singlewindow\singlewindow\src\test\resources
+2025-04-09 17:10:07,549 [Worker-157: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-09 17:10:07,586 [Worker-157: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 44 resources from src\main\resources to target\classes
+2025-04-09 17:10:07,633 [Worker-157: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\do_nont_touch\college\singlewindow\singlewindow\src\test\resources
