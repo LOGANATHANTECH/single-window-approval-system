@@ -103,19 +103,36 @@ function loadApprovalRequests() {
     .catch((error) => console.error("Error fetching data:", error));
 }
 
-
 // ========== APPROVED REQUESTS ==========
+document.addEventListener("DOMContentLoaded", () => {
+   document.getElementById("approved-section").style.display = "block";
+   loadApprovedRequests();
+ });
+
 function loadApprovedRequests() {
   fetch("http://localhost:8080/application/getApproved")
+  
     .then((response) => response.json())
     .then((data) => {
       const tableBody = document.getElementById("approvedTableBody");
+      
+      // Clear existing rows to prevent duplication
+      tableBody.innerHTML = "";
+      
       if (data.data && data.data.length > 0) {
         data.data.forEach((application, index) => {
           const row = document.createElement("tr");
 
-          // Apply a different color for even and odd rows
-          row.style.backgroundColor = index % 2 === 0 ? "blue": "#0000FF80";
+          // Apply a different color for even and odd rows:
+          if (index % 2 === 0) {
+            // Even rows: solid blue background with white text.
+            row.style.backgroundColor = "blue";
+            row.style.color = "white";
+          } else {
+            // Odd rows: translucent blue background with black text.
+            row.style.backgroundColor = "#0000FF80";
+            row.style.color = "black";
+          }
 
           row.innerHTML = `
             <td>${index + 1}</td>
@@ -126,18 +143,19 @@ function loadApprovedRequests() {
             <td>${application.status}</td>
             <td><button class="btn btn-info btn-sm">View</button></td>
             <td>
-              <button class="btn btn-success btn-sm">Approve</button>
-              <button class="btn btn-danger btn-sm">Reject</button>
+              <button class="btn btn-success btn-sm" data-id="${application.id}">Approve</button>
+              <button class="btn btn-danger btn-sm" data-id="${application.id}">Reject</button>
             </td>
           `;
           tableBody.appendChild(row);
         });
       } else {
-        console.warn("No pending applications found.");
+        console.warn("No approved applications found.");
       }
     })
     .catch((error) => console.error("Error fetching data:", error));
 }
+
 
 
 // ========== PROFILE FORM ==========
