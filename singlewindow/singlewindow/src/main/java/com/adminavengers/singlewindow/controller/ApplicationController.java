@@ -120,8 +120,8 @@ public class ApplicationController {
 //UPDATE APPLICATION
     //update status by id
     @PutMapping("bystatus")
-    public ResponseEntity<HttpStatus> updateStatusById(@RequestBody UpdateStatus updateStatus){
-    	
+    public int updateStatusById(@RequestBody UpdateStatus updateStatus){
+    	return applicationRepository.updateStatusById(updateStatus.getId(), Status.APPROVED);
     }
     
     
