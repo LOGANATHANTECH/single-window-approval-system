@@ -201,3 +201,75 @@ function initLogout() {
     });
   }
 }
+
+// pie chart section
+  document.addEventListener("DOMContentLoaded", function () {
+
+    // Chart 1: Approval Status
+    new Chart(document.getElementById('approvalChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Approved', 'Rejected', 'Pending'],
+        datasets: [{
+          label: 'Approvals',
+          data: [50, 20, 30],
+          backgroundColor: ['#4caf50', '#f44336', '#ff9800']
+        }]
+      }
+    });
+
+    // Chart 2: Pending Requests
+    new Chart(document.getElementById('pendingChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Dept A', 'Dept B', 'Dept C'],
+        datasets: [{
+          label: 'Pending',
+          data: [10, 15, 5],
+          backgroundColor: ['#03a9f4', '#00bcd4', '#009688']
+        }]
+      }
+    });
+
+    // Chart 3: Rejection Reasons
+    new Chart(document.getElementById('rejectedChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Incomplete Docs', 'Invalid Info', 'Policy Issue'],
+        datasets: [{
+          label: 'Rejections',
+          data: [12, 8, 10],
+          backgroundColor: ['#e91e63', '#9c27b0', '#673ab7']
+        }]
+      }
+    });
+
+    // Chart 4: Department-Wise Approvals
+    new Chart(document.getElementById('departmentChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Health', 'Education', 'Transport', 'Housing'],
+        datasets: [{
+          label: 'By Dept',
+          data: [20, 25, 15, 10],
+          backgroundColor: ['#ff5722', '#ffc107', '#8bc34a', '#00bcd4']
+        }]
+      }
+    });
+
+    // Chart 5: Monthly Approval Trends
+    new Chart(document.getElementById('monthlyChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+        datasets: [{
+          label: 'Monthly',
+          data: [10, 15, 12, 8],
+          backgroundColor: ['#cddc39', '#607d8b', '#9e9e9e', '#795548']
+        }]
+      }
+    });
+
+  });
+
+
