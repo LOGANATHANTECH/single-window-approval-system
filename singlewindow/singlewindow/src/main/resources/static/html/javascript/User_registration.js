@@ -168,3 +168,23 @@ debugger;
             console.error("Error:", error);
         });
 });
+
+
+
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get the 'Your Applications' link from the dropdown menu
+    const applicationsLink = document.querySelector('a[href="#applications"]');
+    const section = document.getElementById("application-status-section");
+
+    // Hide the section by default
+    section.style.display = "none";
+
+    applicationsLink.addEventListener("click", function (e) {
+      e.preventDefault();  // Prevent default link behavior
+
+      // Show the Application Status section
+      section.style.display = "block";
+    });
+  });

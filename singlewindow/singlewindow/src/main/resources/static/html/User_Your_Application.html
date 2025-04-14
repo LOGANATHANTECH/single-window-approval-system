@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Application Status with Particle Effects</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <style>
+    /* Background with particles effect */
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Ensures particles are behind the content */
+    }
+
+    body {
+      background: linear-gradient(135deg, #6e7dff, #42a5f5);
+      font-family: 'Arial', sans-serif;
+      padding-top: 50px;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow: hidden;
+    }
+
+    .application-card {
+      background: linear-gradient(135deg, #ffffff, #f1f1f1);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.5s ease-in-out;
+    }
+
+    .application-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .application-card h5 {
+      font-size: 1.3rem;
+      color: #333;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .application-card p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .application-status {
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 25px;
+      display: inline-block;
+      margin-top: 15px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: whitesmoke;
+      transition: all 0.3s ease-out;
+    }
+
+    .status-approved {
+      background-color: #66bb6a;
+    }
+
+    .status-pending {
+      background-color: #ffca28;
+    }
+
+    .status-rejected {
+      background-color: #f44336;
+    }
+
+    .status-approved:hover,
+    .status-pending:hover,
+    .status-rejected:hover {
+      transform: scale(1.1);
+      background-color: #388e3c;
+    }
+
+    /* Section and Heading Styling */
+    h2 {
+      font-size: 2.5rem;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      padding: 0 15px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particle.js container -->
+  <div id="particles-js"></div>
+
+<section id="application-status-section" class="section-content mt-5">
+  <div class="container">
+    <h2 class="mb-4 text-center">Your Applications</h2>
+    <div class="row" id="applicationCardsContainer">
+      <!-- Cards will be injected here -->
+    </div>
+  </div>
+</section>
+
+<script>
+  // Initialize Particle.js
+  particlesJS("particles-js", {
+    particles: {
+      number: {
+        value: 50, // Number of particles
+        density: {
+          enable: true,
+          value_area: 800
+        }
+      },
+      color: {
+        value: "#ffffff"
+      },
+      shape: {
+        type: "circle",
+        stroke: {
+          width: 0,
+          color: "#000000"
+        }
+      },
+      opacity: {
+        value: 0.5,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 1,
+          opacity_min: 0.1,
+          sync: false
+        }
+      },
+      size: {
+        value: 3,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 2,
+          size_min: 0.1,
+          sync: false
+        }
+      },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#ffffff",
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 3,
+        direction: "none",
+        random: false,
+        straight: false,
+        out_mode: "out",
+        bounce: false,
+        attract: {
+          enable: false,
+          rotateX: 600,
+          rotateY: 1200
+        }
+      }
+    },
+    interactivity: {
+      detect_on: "window",
+      events: {
+        onhover: {
+          enable: true,
+          mode: "repulse"
+        },
+        onclick: {
+          enable: true,
+          mode: "push"
+        }
+      }
+    },
+    retina_detect: true
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const dummyApplications = [
+      {
+        id: "APP1001",
+        department: "Urban Planning",
+        submissionDate: "2025-04-01",
+        status: "Pending",
+        remarks: ""
+      },
+      {
+        id: "APP1002",
+        department: "Health",
+        submissionDate: "2025-04-03",
+        status: "Approved",
+        remarks: "All documents verified and approved."
+      },
+      {
+        id: "APP1003",
+        department: "Transport",
+        submissionDate: "2025-04-05",
+        status: "Rejected",
+        remarks: "Missing vehicle permit certificate."
+      }
+    ];
+
+    const container = document.getElementById("applicationCardsContainer");
+    container.innerHTML = "";
+
+    dummyApplications.forEach((app, index) => {
+      const card = document.createElement("div");
+      card.className = "col-md-4";
+
+      card.innerHTML = `
+        <div class="application-card">
+          <h5><strong>Application ID:</strong> ${app.id}</h5>
+          <p><strong>Department:</strong> ${app.department}</p>
+          <p><strong>Submitted:</strong> ${new Date(app.submissionDate).toLocaleDateString()}</p>
+          <p class="application-status status-${app.status.toLowerCase()}">${app.status}</p>
+          <p><strong>Remarks:</strong> ${app.remarks || "—"}</p>
+        </div>
+      `;
+
+      container.appendChild(card);
+
+      // Add show class with delay to animate cards one by one
+      setTimeout(() => {
+        card.querySelector('.application-card').classList.add('show');
+      }, index * 300); // Delay for each card
+    });
+  });
+</script>
+
+</body>
+</html>
