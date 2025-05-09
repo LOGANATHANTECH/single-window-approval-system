@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard - Startup Approval System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    body {
+      background: linear-gradient(135deg, #6e7dff, #42a5f5);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .sidebar {
+      min-height: 100vh;
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      border-radius: 0 15px 15px 0;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 15px;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .nav-link {
+      color: #fff;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      color: #ffd700;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .timeline {
+      list-style: none;
+      padding: 0;
+    }
+
+    .timeline li {
+      margin-bottom: 15px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .timeline li {
+        padding-left: 30px;
+      }
+    }
+
+    .timeline {
+  list-style: none;
+  padding: 0;
+  color: #fff;
+}
+
+.timeline .step {
+  margin-bottom: 15px;
+  padding-left: 20px;
+  position: relative;
+  font-size: 16px;
+}
+
+.timeline .step::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.timeline .step .badge {
+  padding: 5px 10px;
+}
+
+#step1, #step2, #step3, #step4, #step5 {
+  transition: background-color 0.5s ease;
+}
+
+  </style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-lg-2 col-md-3 sidebar">
+      <h4>📊 Dashboard</h4>
+      <nav class="nav flex-column">
+        <a class="nav-link" onclick="showSection('home')">🏠 Home</a>
+        <a class="nav-link" onclick="showSection('apply')">📝 Apply</a>
+        <a class="nav-link" onclick="showSection('applications')">📋 My Applications</a>
+        <a class="nav-link" onclick="showSection('profile')">👤 Profile</a>
+        <a class="nav-link" onclick="logout()">🚪 Logout</a>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-lg-10 col-md-9 py-4 px-3">
+
+      <!-- Home Section -->
+      <div id="home-section">
+        <h2>Welcome, Startup Founder 👋</h2>
+        <p>Track your approval process and manage your startup applications efficiently.</p>
+
+        <div class="row g-4">
+          <div class="col-sm-4">
+            <div class="card p-3 text-center">
+              <h4>📨 Applications</h4>
+              <h2>5</h2>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card p-3 text-center">
+              <h4>✅ Approved</h4>
+              <h2>2</h2>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card p-3 text-center">
+              <h4>⏳ Pending</h4>
+              <h2>3</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <h4>🛣️ Approval Steps</h4>
+          <ul class="timeline">
+            <li id="step1" class="step"><strong>Application Submitted</strong> <span class="badge bg-secondary">Pending</span></li>
+            <li id="step2" class="step"><strong>Document Verification</strong> <span class="badge bg-secondary">Pending</span></li>
+            <li id="step3" class="step"><strong>NOC Approval</strong> <span class="badge bg-secondary">Pending</span></li>
+            <li id="step4" class="step"><strong>Final Review</strong> <span class="badge bg-secondary">Pending</span></li>
+            <li id="step5" class="step"><strong>Status Update</strong> <span class="badge bg-secondary">Pending</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Apply Section -->
+      <div id="apply-section" class="hidden mt-4">
+        <h4>📝 Apply for Approval</h4>
+        <form id="business-form" class="card p-4 mt-3" style="border-radius: 20px;">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Business Name</label>
+              <input type="text" name="businessname" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Company Name</label>
+              <input type="text" name="companyname" class="form-control" required>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Company Address</label>
+              <textarea name="companyaddress" rows="2" class="form-control" required></textarea>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Business Type</label>
+              <select name="businesstype" class="form-select" required>
+                <option disabled selected>--Select Type--</option>
+                <option value="retail">Retail</option>
+                <option value="service">Service</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="technology">Technology</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" name="phonenumber" class="form-control" pattern="[0-9]{10}" maxlength="10" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Whatsapp Number</label>
+              <input type="tel" name="whatsappnumber" class="form-control" required>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Description About Business</label>
+              <textarea name="descriptionaboutbusiness" rows="3" class="form-control" minlength="50" required></textarea>
+            </div>
+            <div class="col-12 text-end">
+              <button type="submit" class="btn btn-success px-4 mt-2">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Applications Section -->
+      <div id="applications-section" class="hidden mt-4">
+        <h4>📄 My Applications</h4>
+        <table class="table table-bordered mt-3">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Startup</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>TechNova</td>
+              <td>2025-04-10</td>
+              <td><span class="badge bg-warning">Pending</span></td>
+              <td>Under Review</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>AgriBoost</td>
+              <td>2025-04-05</td>
+              <td><span class="badge bg-success">Approved</span></td>
+              <td>Verified</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Profile Section -->
+      <div id="profile-section" class="hidden mt-4">
+        <h4>👤 My Profile</h4>
+        <div class="card p-4 mt-3">
+          <form class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-control" value="Karthik Kumar" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" value="karthik@example.com" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Phone</label>
+              <input type="tel" class="form-control" value="+91-9876543210" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Startup Name</label>
+              <input type="text" class="form-control" value="InnovateX Labs" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Company-address</label>
+              <input type="text" class="form-control" value="Sankari-RS" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Business Type</label>
+              <select name="businesstype" class="form-select" required>
+                <option disabled selected>--Select Type--</option>
+                <option value="retail">Retail</option>
+                <option value="service">Service</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="technology">Technology</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label">About Me</label>
+              <textarea class="form-control" rows="3">Founder of InnovateX Labs, building smart solutions for startup approvals.</textarea>
+            </div>
+            <div class="col-12 text-end">
+              <button type="submit" class="btn btn-success px-4 mt-2">Update Profile</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 50, density: { enable: true, value_area: 800 } },
+      color: { value: "#ffffff" },
+      shape: { type: "circle" },
+      opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1 } },
+      size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1 } },
+      line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+      move: { enable: true, speed: 3, direction: "none", out_mode: "out" }
+    },
+    interactivity: {
+      events: {
+        onhover: { enable: true, mode: "repulse" },
+        onclick: { enable: true, mode: "push" }
+      }
+    },
+    retina_detect: true
+  });
+
+  function showSection(section) {
+    ['home', 'apply', 'applications', 'profile'].forEach(id => {
+      document.getElementById(id + '-section').classList.add('hidden');
+    });
+    document.getElementById(section + '-section').classList.remove('hidden');
+  }
+
+  function logout() {
+    if (confirm("Are you sure you want to log out?")) {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = "html/user_login.html";
+    }
+  }
+
+  // Handle Apply form submission
+  document.getElementById('business-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    let formdata = Object.fromEntries(formData.entries());
+    formdata.user = sharedUserData || {}; // Make sure sharedUserData is defined globally
+    try {
+      const response = await fetch('http://localhost:8080/application', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formdata)
+      });
+      if (response.ok) {
+        window.location.href = 'track_status.html';
+      } else {
+        alert('Failed to submit the form. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }
+  });
+
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+  // Simulate step completion with some delay
+  setTimeout(() => updateStep(1, 'completed'), 1000); // Simulate step 1 completion after 1 second
+  setTimeout(() => updateStep(2, 'in-progress'), 2000); // Simulate step 2 in-progress after 2 seconds
+  setTimeout(() => updateStep(3, 'completed'), 4000); // Simulate step 3 completion after 4 seconds
+  setTimeout(() => updateStep(4, 'pending'), 6000); // Simulate step 4 still pending after 6 seconds
+  setTimeout(() => updateStep(5, 'pending'), 8000); // Simulate step 5 pending after 8 seconds
+});
+
+// Function to update a specific step
+function updateStep(stepNumber, status) {
+  const step = document.getElementById('step' + stepNumber);
+  const badge = step.querySelector('.badge');
+
+  // Update badge text and class based on status
+  if (status === 'completed') {
+    badge.textContent = 'Completed';
+    badge.classList.remove('bg-secondary', 'bg-warning', 'bg-danger');
+    badge.classList.add('bg-success');
+    step.classList.add('completed');
+  } else if (status === 'in-progress') {
+    badge.textContent = 'In Progress';
+    badge.classList.remove('bg-secondary', 'bg-success', 'bg-danger');
+    badge.classList.add('bg-warning');
+    step.classList.add('in-progress');
+  } else {
+    badge.textContent = 'Pending';
+    badge.classList.remove('bg-success', 'bg-warning', 'bg-danger');
+    badge.classList.add('bg-danger');
+    step.classList.add('pending');
+  }
+}
+
+</script>
+
+</body>
+</html>

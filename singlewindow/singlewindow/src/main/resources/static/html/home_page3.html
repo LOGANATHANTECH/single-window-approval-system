@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Govt Approval Portal - Home</title>
+  <style>
+    /* Karthik Particle Background Effect */
+    #karthik_effcts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      z-index: -1;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px 40px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    .btn-container {
+      margin-top: 30px;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid white;
+      padding: 12px 30px;
+      border-radius: 30px;
+      color: white;
+      font-weight: bold;
+      margin: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn:hover {
+      background: white;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 20px;
+      max-width: 300px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      display: inline-block;
+      vertical-align: top;
+      transition: transform 0.3s;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .glass-card img {
+      width: 60px;
+      margin-bottom: 15px;
+    }
+
+    .video-wrapper {
+      margin: 40px auto;
+      max-width: 600px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      margin: 15px;
+      padding: 20px 40px;
+      font-size: 1.5rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      background: rgba(0,0,0,0.4);
+      padding: 40px 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    .social-icons img {
+      width: 30px;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+
+    @media (max-width: 768px) {
+      .glass-card {
+        max-width: 90%;
+      }
+
+      .stat {
+        width: 80%;
+        font-size: 1.2rem;
+      }
+    }
+
+
+
+    #chatbot-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffffff20;
+      backdrop-filter: blur(8px);
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+  
+    #chatbot-window {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 320px;
+      height: 420px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      overflow: hidden;
+      z-index: 999;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      font-family: 'Segoe UI', sans-serif;
+    }
+  
+    #chatbot-header {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 15px;
+      font-weight: bold;
+      text-align: left;
+    }
+  
+    #chatbot-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+  
+    .message {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 12px;
+      max-width: 80%;
+      line-height: 1.4;
+    }
+  
+    .user {
+      background: rgba(255,255,255,0.9);
+      color: black;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+  
+    .bot {
+      background: rgba(0,0,0,0.3);
+      color: white;
+      align-self: flex-start;
+      margin-right: auto;
+    }
+  
+    #chatbot-input {
+      border: none;
+      padding: 15px;
+      outline: none;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+  
+  </style>
+</head>
+<body>
+
+<div id="karthik_effcts"></div>
+
+<header>
+  <h1>Welcome to Single Window Government Approval Platform</h1>
+  <p>Empowering Entrepreneurs to easily apply, track and manage approvals from multiple government departments in a unified portal.</p>
+  <div class="btn-container">
+    <button class="btn" onclick="location.href='user-login.html'">User Login</button>
+    <button class="btn" onclick="location.href='user-signup.html'">User Sign Up</button>
+    <button class="btn" onclick="location.href='officer-login.html'">Officer Login</button>
+    <button class="btn" onclick="location.href='officer-signup.html'">Officer Sign Up</button>
+  </div>
+</header>
+
+<section id="how-it-works">
+  <h2 class="section-title">How It Works</h2>
+  <div class="glass-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/2721/2721263.png" />
+    <h3>Step 1</h3>
+    <p>Sign up as a User or Officer.</p>
+  </div>
+  <div class="glass-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/3140/3140331.png" />
+    <h3>Step 2</h3>
+    <p>Submit or Review Applications.</p>
+  </div>
+  <div class="glass-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/4206/4206326.png" />
+    <h3>Step 3</h3>
+    <p>Track status and receive updates.</p>
+  </div>
+</section>
+
+<section id="video">
+  <h2 class="section-title">Watch How It Works</h2>
+  <div class="video-wrapper">
+    <video width="100%" controls autoplay muted loop>
+      <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</section>
+
+<section id="testimonials">
+  <h2 class="section-title">Testimonials</h2>
+  <div class="glass-card">
+    <p>"Super easy and intuitive. Got all approvals in one place!"</p>
+    <strong>- Asha, Startup Founder</strong>
+  </div>
+  <div class="glass-card">
+    <p>"Tracking and reviewing applications has never been simpler."</p>
+    <strong>- Mr. Ramesh, Govt Officer</strong>
+  </div>
+</section>
+
+<section id="stats">
+  <h2 class="section-title">Quick Stats</h2>
+  <div class="stats">
+    <div class="stat">📄 2,300+ Applications</div>
+    <div class="stat">✅ 1,800 Approved</div>
+    <div class="stat">👨‍💼 150+ Officers</div>
+  </div>
+</section>
+<!-- Chatbot Toggle Button -->
+<div id="chatbot-toggle" onclick="toggleChat()">
+    💬
+  </div>
+  
+  <!-- Chatbot Window -->
+  <div id="chatbot-window">
+    <div id="chatbot-header">
+      🤖 Chat with Us
+      <span onclick="toggleChat()" style="cursor:pointer;float:right;">✖</span>
+    </div>
+    <div id="chatbot-messages"></div>
+    <input type="text" id="chatbot-input" placeholder="Type your message..." onkeypress="handleKey(event)" />
+  </div>
+
+
+<footer>
+  <p>Contact us: support@govportal.in | +91-9876543210</p>
+  <div class="social-icons">
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"/></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"/></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="LinkedIn"/></a>
+  </div>
+  <p>&copy; 2025 Govt Approval Platform. All rights reserved.</p>
+</footer>
+
+<!-- particles.js from karthik_effcts -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  particlesJS('karthik_effcts', {
+    particles: {
+      number: { value: 100, density: { enable: true, value_area: 800 }},
+      color: { value: '#ffffff' },
+      shape: { type: 'circle' },
+      opacity: { value: 0.5 },
+      size: { value: 3 },
+      move: { enable: true, speed: 2, direction: 'none' }
+    },
+    interactivity: {
+      events: {
+        onhover: { enable: true, mode: 'repulse' }
+      }
+    },
+    retina_detect: true
+  });
+
+
+  function toggleChat() {
+      const chat = document.getElementById("chatbot-window");
+      chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
+    }
+  
+    function handleKey(e) {
+      if (e.key === "Enter") {
+        const input = document.getElementById("chatbot-input");
+        const msg = input.value.trim();
+        if (msg !== "") {
+          addMessage("user", msg);
+          getBotReply(msg);
+          input.value = "";
+        }
+      }
+    }
+  
+    function addMessage(sender, text) {
+      const container = document.getElementById("chatbot-messages");
+      const msg = document.createElement("div");
+      msg.className = "message " + sender;
+      msg.innerText = text;
+      container.appendChild(msg);
+      container.scrollTop = container.scrollHeight;
+    }
+  
+    function getBotReply(msg) {
+      const lower = msg.toLowerCase();
+  
+      let reply = "I'm not sure how to help with that yet.";
+  
+      if (lower.includes("hello") || lower.includes("hi")) {
+        reply = "Hello! 👋 How can I assist you today?";
+      } else if (lower.includes("apply")) {
+        reply = "You can apply by clicking on the 'User Sign Up' button above.";
+      } else if (lower.includes("status")) {
+        reply = "Once logged in, you can track your application status on your dashboard.";
+      } else if (lower.includes("officer")) {
+        reply = "Officers can log in using the 'Officer Login' button to review applications.";
+      } else if (lower.includes("help")) {
+        reply = "Sure! You can ask me about applying, status, or officer roles.";
+      }
+  
+      setTimeout(() => {
+        addMessage("bot", reply);
+      }, 600);
+    }
+</script>
+</body>
+</html>
+  

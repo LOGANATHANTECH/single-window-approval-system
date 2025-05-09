@@ -1,0 +1,323 @@
+@   import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  /* font-style: normal; */
+}
+body{
+    width: 100vw;
+    background-color: #efefef;
+}
+header{
+    height: 70px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+nav{
+    width: 90%;
+    height: 95%;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    /* justify-content: space-around; */
+    gap: 20px;
+}
+#logo-container{
+    flex-basis: 15%;
+    height: 40px;
+    top: 100%;
+    /* border: 1px solid purple; */
+}
+#logo-container span{
+    width: 70%;
+}
+#logo-container span>img{
+    margin-top: 5%;
+    width: 70%;
+    margin-left: 30%;
+    
+}
+#search-container{
+    flex-basis: 65%;
+    height: 50px;
+    border-radius: 3px;
+    /* border: 1px solid purple; */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0px 0px 3px #000000be;
+}
+#search-container{
+    box-shadow: 0px 0px 4px #573d3dbe;
+    
+}
+#location{
+    flex-basis: 30%;
+    height: 20px;
+    /* border: 1px solid green; */
+    display: flex;
+    align-items: center;
+    border-right: 2px solid  rgb(206, 196, 196);
+
+    
+}
+#location span{
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+#location span #loc{
+    margin-left: 7px;
+    color: #f45b74;
+}
+#location span #down{
+    margin-right: 30%;
+}
+#location span input{
+    width: 200px;
+    height: 30px;
+    border: none;
+    outline: none;
+    margin-left: 5px;
+}
+#input-box{
+    flex-basis: 70%;
+    height: 30px;
+    margin-left: 1px;
+    /* border: 1px solid green; */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+#input-box #search-icon{
+    display: flex;
+    justify-content: center;
+
+}
+#input-box #inp-container input{
+    width: 350px;
+    height: 30px;
+    border: none;
+    outline: none;
+    font-size: 90%;
+}
+#reg-container{
+    flex-basis: 20%;
+    height: 40px;
+    /* border: 1px solid purple; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#reg-container span a{
+    font-size: 20px;
+    font-weight: 400;
+    text-decoration: none;
+    color: #7d7b7b;
+}
+#reg-container span a:hover{
+    color: black;
+}
+#navigate{
+    background-color: #ffffff;
+    height: 50px;
+    display: flex;
+    align-items: end;
+}
+#para{
+    width: 430px;
+    background-color: #ffffff;
+    /* border: 1px solid; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40px;
+    gap: 10px;
+}
+#para a{
+    font-size: 14px;
+    text-decoration: none;
+    color: gray;
+}
+#para a:hover{
+    color: #f45b74;
+}
+#para span{
+    font-size: 14px;
+    color: rgb(170,170,170);
+}
+#services{
+    height: 100px;
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+#services article{
+    height: 100%;
+    width: 700px;
+    /* border: 1px solid; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-left: 40px;
+}
+.images{
+    height: 60px;
+    width: 60px;
+    /* border: 1px solid red; */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.images img{
+    height:30px;
+    width: 30px;
+}
+#services article div:hover{
+    color: red;
+    border-bottom:2px solid red;
+
+}
+#services article div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+#dining .images{
+    background-color: #f1f1f1;
+}
+#delivery .images{
+    background-color: #dfdfdf;
+}
+#nightlife .images{
+    background-color: #b4deef;
+}
+#collections{
+    font-weight:500;
+    font-size: 30px;
+    margin-left: 120px;
+}
+#explore {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 120px;
+} 
+#explore span{
+    position: absolute;
+    right: 200px;
+    top: 280px;
+    color: #f45b74;
+  
+}
+#explore span svg{
+    padding-top: 4px;
+}
+#list-images{
+    height: 100%;
+    /* margin-right: 5px; */
+    left:1px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 50px;
+    padding-top: 50px;
+    justify-content: center;
+    /* gap: 100px; */
+}
+
+main div img{
+    height: 300px;
+    width: 250px;
+    border-radius: 5px;
+}
+main div img{
+    box-shadow: 0px 0px 4px blue;
+}
+.rooftop-container{
+    position: relative;
+    
+
+}
+.rooftop-container .rooftop-words{
+    position: absolute;
+    /* text-align: center; */
+    bottom: 1rem;
+   left: 3px;
+    color: white;
+   }
+   .rooftop-container .rooftop-words h4{
+    font-size: 20px;
+   }
+.rooftop-container .rooftop-words svg{
+    padding-top: 5px;
+}
+.new-container{
+    position: relative;
+}
+.new-container #new-words{
+    position: absolute;
+   bottom: 1rem;
+   color: white;
+   left: 2px;
+}
+.new-container #new-words h4{
+    font-size: 20px;
+}
+.new-container #new-words svg{
+    padding-top: 5px;
+}
+.date-container{
+    position: relative;
+}
+.date-container #date-word{
+    position: absolute;
+    bottom: 1rem;
+    left: 3px;
+    color: white;
+}
+.date-container #date-word h4{
+    font-size: 20px;
+}
+.date-container #date-word svg{
+    padding-top: 5px;
+}
+.luxury-container{
+    position: relative;
+
+}
+.luxury-container #luxury-words{
+    position: absolute;
+    bottom: 1rem;
+    left: 3px;
+    color: white;
+}
+.luxury-container #luxury-words h4{
+    font-size: 20px;
+}
+.luxury-container #luxury-words svg{
+    padding-top: 5px;
+}
+#circle{
+    height:40px;
+    width: 40px;
+    position: absolute;
+    top: -150%;
+    border-radius: 50%;
+    background-color: white;
+    margin-left: 100%;
+    justify-content: start;
+}
+#circle svg{
+margin-top: 10px;
+}
