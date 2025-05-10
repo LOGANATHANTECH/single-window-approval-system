@@ -379,8 +379,13 @@
         reply = "Officers can log in using the 'Officer Login' button to review applications.";
       } else if (lower.includes("help")) {
         reply = "Sure! You can ask me about applying, status, or officer roles.";
+      } else if (lower.includes("how to register")){
+        reply = "You can register by clicking on the 'Sign Up' button and filling in the required details."
+      } else if (lower.includes("track application")) {
+        reply = "To track your application, log in and check the 'Dashboard' for real-time updates."
+      } else if (lower.includes("services offered")) {
+        reply =  "We provide a single-window platform for government approvals,making the process faster and more efficient."
       }
-  
       setTimeout(() => {
         addMessage("bot", reply);
       }, 600);
