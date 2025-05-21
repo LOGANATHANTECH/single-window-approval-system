@@ -7,6 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
   <style>
     #particles-js {
       position: fixed;
@@ -62,17 +63,15 @@
     .timeline {
       list-style: none;
       padding: 0;
-      color: #fff;
     }
 
-    .timeline .step {
+    .timeline li {
       margin-bottom: 15px;
       padding-left: 20px;
       position: relative;
-      font-size: 16px;
     }
 
-    .timeline .step::before {
+    .timeline li::before {
       content: '';
       position: absolute;
       left: 0;
@@ -83,24 +82,49 @@
       border-radius: 50%;
     }
 
-    .timeline .step .badge {
-      padding: 5px 10px;
-    }
-
-    #step1, #step2, #step3, #step4, #step5 {
-      transition: background-color 0.5s ease;
-    }
-
     @media (max-width: 768px) {
       .sidebar {
         border-radius: 0;
         text-align: center;
       }
 
-      .timeline .step {
+      .timeline li {
         padding-left: 30px;
       }
     }
+
+    .timeline {
+  list-style: none;
+  padding: 0;
+  color: #fff;
+}
+
+.timeline .step {
+  margin-bottom: 15px;
+  padding-left: 20px;
+  position: relative;
+  font-size: 16px;
+}
+
+.timeline .step::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.timeline .step .badge {
+  padding: 5px 10px;
+}
+
+#step1, #step2, #step3, #step4, #step5 {
+  transition: background-color 0.5s ease;
+}
+
   </style>
 </head>
 <body>
@@ -123,7 +147,8 @@
 
     <!-- Main Content -->
     <div class="col-lg-10 col-md-9 py-4 px-3">
-      <!-- Sections -->
+
+      <!-- Home Section -->
       <div id="home-section">
         <h2>Welcome, Startup Founder 👋</h2>
         <p>Track your approval process and manage your startup applications efficiently.</p>
@@ -215,7 +240,7 @@
       <!-- Applications Section -->
       <div id="applications-section" class="hidden mt-4">
         <h4>📄 My Applications</h4>
-        <table class="table table-bordered mt-3 text-white">
+        <table class="table table-bordered mt-3">
           <thead>
             <tr>
               <th>#</th>
@@ -266,17 +291,17 @@
               <input type="text" class="form-control" value="InnovateX Labs" required>
             </div>
             <div class="col-md-6">
-              <label class="form-label">Company Address</label>
+              <label class="form-label">Company-address</label>
               <input type="text" class="form-control" value="Sankari-RS" required>
             </div>
             <div class="col-md-6">
               <label class="form-label">Business Type</label>
               <select name="businesstype" class="form-select" required>
-                <option disabled>--Select Type--</option>
+                <option disabled selected>--Select Type--</option>
                 <option value="retail">Retail</option>
                 <option value="service">Service</option>
                 <option value="manufacturing">Manufacturing</option>
-                <option value="technology" selected>Technology</option>
+                <option value="technology">Technology</option>
                 <option value="others">Others</option>
               </select>
             </div>
@@ -301,8 +326,8 @@
       number: { value: 50, density: { enable: true, value_area: 800 } },
       color: { value: "#ffffff" },
       shape: { type: "circle" },
-      opacity: { value: 0.5, random: true },
-      size: { value: 3, random: true },
+      opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1 } },
+      size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1 } },
       line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
       move: { enable: true, speed: 3, direction: "none", out_mode: "out" }
     },
@@ -320,7 +345,6 @@
       document.getElementById(id + '-section').classList.add('hidden');
     });
     document.getElementById(section + '-section').classList.remove('hidden');
-    localStorage.setItem('activeSection', section); // Save last section
   }
 
   function logout() {
@@ -331,11 +355,12 @@
     }
   }
 
+  // Handle Apply form submission
   document.getElementById('business-form').addEventListener('submit', async function(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     let formdata = Object.fromEntries(formData.entries());
-    formdata.user = window.sharedUserData || {}; // Make sure global data exists
+    formdata.user = sharedUserData || {}; // Make sure sharedUserData is defined globally
     try {
       const response = await fetch('http://localhost:8080/application', {
         method: 'POST',
@@ -353,11 +378,42 @@
     }
   });
 
+
+
   document.addEventListener('DOMContentLoaded', function () {
-    // Show saved section or default to home
-    const section = localStorage.getItem('activeSection') || 'home';
-    showSection(section);
-  });
+  // Simulate step completion with some delay
+  setTimeout(() => updateStep(1, 'completed'), 1000); // Simulate step 1 completion after 1 second
+  setTimeout(() => updateStep(2, 'in-progress'), 20000); // Simulate step 2 in-progress after 2 seconds
+  setTimeout(() => updateStep(3, 'completed'), 40000); // Simulate step 3 completion after 4 seconds
+  setTimeout(() => updateStep(4, 'pending'), 60000); // Simulate step 4 still pending after 6 seconds
+  setTimeout(() => updateStep(5, 'pending'), 80000); // Simulate step 5 pending after 8 seconds
+});
+
+// Function to update a specific step
+function updateStep(stepNumber, status) {
+  const step = document.getElementById('step' + stepNumber);
+  const badge = step.querySelector('.badge');
+
+  // Update badge text and class based on status
+  if (status === 'completed') {
+    badge.textContent = 'Completed';
+    badge.classList.remove('bg-secondary', 'bg-warning', 'bg-danger');
+    badge.classList.add('bg-success');
+    step.classList.add('completed');
+  } else if (status === 'in-progress') {
+    badge.textContent = 'In Progress';
+    badge.classList.remove('bg-secondary', 'bg-success', 'bg-danger');
+    badge.classList.add('bg-warning');
+    step.classList.add('in-progress');
+  } else {
+    badge.textContent = 'Pending';
+    badge.classList.remove('bg-success', 'bg-warning', 'bg-danger');
+    badge.classList.add('bg-danger');
+    step.classList.add('pending');
+  }
+}
+
 </script>
+
 </body>
 </html>

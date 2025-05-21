@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2Factor OTP Verification</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, button { padding: 8px; margin: 10px 0; }
+  </style>
+</head>
+<body>
+
+  <h2>OTP Verification (2Factor)</h2>
+
+  <div id="step1">
+    <input type="text" id="phone" placeholder="Enter Mobile Number (+91...)" />
+    <button onclick="sendOTP()">Send OTP</button>
+  </div>
+
+  <div id="step2" style="display: none;">
+    <input type="text" id="otp" placeholder="Enter OTP" />
+    <button onclick="verifyOTP()">Verify OTP</button>
+  </div>
+
+  <p id="message"></p>
+
+  <script>
+    let sessionId = "";
+
+    async function sendOTP() {
+      const phone = document.getElementById('phone').value;
+
+      const res = await fetch('http://localhost:3000/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone })
+      });
+
+      const data = await res.json();
+      document.getElementById('message').innerText = data.message || 'OTP Sent';
+
+      if (data.success) {
+        sessionId = data.sessionId;
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
+      }
+    }
+
+    async function verifyOTP() {
+      const otp = document.getElementById('otp').value;
+
+      const res = await fetch('http://localhost:3000/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ otp, sessionId })
+      });
+
+      const data = await res.json();
+      document.getElementById('message').innerText = data.message;
+    }
+  </script>
+
+</body>
+</html>

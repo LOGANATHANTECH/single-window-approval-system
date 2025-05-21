@@ -1,0 +1,61 @@
+// (cEt5TiSFYyqf3Pn6psXUMHwG4m2ju1O8ZvrKbeV9CzAIQhLxNWz31bPs4p6LiJVSCKuBqlfgrEWTt2HZ)--> Fast2SMS
+// (CURRENTLY WE ARE USING FAST2SMS CODE IN OUR PROJECT)
+
+// (043d889c-308c-11f0-8b17-0200cd936042)-->2Factor.in	
+// (SERVER.JS CODE FOR 2FACTOR.IN)
+
+// const express = require('express');
+// const axios = require('axios');
+// const bodyParser = require('body-parser');
+// const cors = require('cors');
+
+// const app = express();
+// const PORT = 3000;
+
+// // Replace with your real 2Factor API key inside double quotes
+// const API_KEY = "YOUR_2FACTOR_API_KEY";
+
+// app.use(cors());
+// app.use(bodyParser.json());
+
+// // Send OTP route
+// app.post('/send-otp', async (req, res) => {
+//   const { phone } = req.body;
+
+//   try {
+//     const response = await axios.get(
+//       `https://2factor.in/API/V1/${API_KEY}/SMS/${phone}/AUTOGEN`
+//     );
+
+//     if (response.data.Status === 'Success') {
+//       res.json({ success: true, sessionId: response.data.Details });
+//     } else {
+//       res.status(400).json({ success: false, message: 'Failed to send OTP' });
+//     }
+//   } catch (error) {
+//     res.status(500).json({ success: false, message: 'Error sending OTP', error: error.message });
+//   }
+// });
+
+// // Verify OTP route
+// app.post('/verify-otp', async (req, res) => {
+//   const { otp, sessionId } = req.body;
+
+//   try {
+//     const response = await axios.get(
+//       `https://2factor.in/API/V1/${API_KEY}/SMS/VERIFY/${sessionId}/${otp}`
+//     );
+
+//     if (response.data.Status === 'Success' && response.data.Details === 'OTP Matched') {
+//       res.json({ success: true, message: 'OTP Verified' });
+//     } else {
+//       res.status(400).json({ success: false, message: 'Invalid OTP' });
+//     }
+//   } catch (error) {
+//     res.status(500).json({ success: false, message: 'Verification error', error: error.message });
+//   }
+// });
+
+// app.listen(PORT, () => {
+//   console.log(`✅ OTP backend server running on http://localhost:${PORT}`);
+// });
