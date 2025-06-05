@@ -125,7 +125,7 @@ document.getElementById('signInForm').addEventListener('submit', function(event)
 			 
 
             alert(`Success: ${data.message}\nRedirecting to registration page...`);
-            window.location.href = 'User_Registration.html';
+            window.location.href = 'user-dashboard2.html';
         } else {
             console.error('Error:', data.message);
             alert(`Error: ${data.message}`);

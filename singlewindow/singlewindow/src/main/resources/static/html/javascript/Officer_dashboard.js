@@ -71,15 +71,17 @@ function showNotification(message) {
 // ========== APPROVAL REQUESTS ==========
 function loadApprovalRequests() {
   fetch("http://localhost:8080/application")
-    .then((response) => response.json())
-    .then((data) => {
+    .then(response => response.json())
+    .then(data => {
       const tableBody = document.getElementById("approvalTableBody");
+      tableBody.innerHTML = ''; // Clear previous rows before loading
+
       if (data.data && data.data.length > 0) {
         data.data.forEach((application, index) => {
           const row = document.createElement("tr");
 
           // Apply a different color for even and odd rows
-          row.style.backgroundColor = index % 2 === 0 ? "blue": "#0000FF80";
+          row.style.backgroundColor = index % 2 === 0 ? "blue" : "#0000FF80";
 
           row.innerHTML = `
             <td>${index + 1}</td>
@@ -90,25 +92,101 @@ function loadApprovalRequests() {
             <td>${application.status}</td>
             <td><button class="btn btn-info btn-sm">View</button></td>
             <td>
-              <button class="btn btn-success btn-sm">Approve</button>
-              <button class="btn btn-danger btn-sm">Reject</button>
+              <button class="btn btn-success btn-sm approve-btn" data-id="${application.id}">Approve</button>
+              <button class="btn btn-danger btn-sm reject-btn" data-id="${application.id}">Reject</button>
             </td>
           `;
+
           tableBody.appendChild(row);
         });
+
+        // Add event listeners for Approve buttons
+        document.querySelectorAll('.approve-btn').forEach(button => {
+          button.addEventListener('click', function () {
+            const appId = this.getAttribute('data-id');
+            approveApplication(appId, this);
+          });
+        });
+
+        // Add event listeners for Reject buttons
+        document.querySelectorAll('.reject-btn').forEach(button => {
+          button.addEventListener('click', function () {
+            const appId = this.getAttribute('data-id');
+            rejectApplication(appId, this);
+          });
+        });
+
       } else {
         console.warn("No pending applications found.");
       }
     })
-    .catch((error) => console.error("Error fetching data:", error));
+    .catch(error => console.error("Error fetching data:", error));
 }
+
+// Function to approve application and remove from list
+function approveApplication(appId, buttonElement) {
+  fetch('http://localhost:8080/application', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: Number(appId),
+      status: "APPROVED"
+    })
+  })
+    .then(response => {
+      if (response.ok) {
+        const row = buttonElement.closest('tr');
+        row.remove();
+        alert("Application approved successfully.");
+      } else {
+        alert("Failed to approve application.");
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert("Error approving application.");
+    });
+}
+
+// Function to rejecte application and remove from list
+function rejectApplication(appId, buttonElement) {
+  fetch('http://localhost:8080/application', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: Number(appId),
+      status: "REJECTED"  // or whatever your backend expects
+    })
+  })
+    .then(response => {
+      if (response.ok) {
+        const row = buttonElement.closest('tr');
+        row.remove();
+        alert("Application rejected successfully.");
+      } else {
+        alert("Failed to reject application.");
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert("Error rejecting application.");
+    });
+}
+
+// Call this once page loads to populate table
+loadApprovalRequests();
+
 
 // ========== APPROVED REQUESTS ==========
 document.addEventListener("DOMContentLoaded", () => {
    document.getElementById("approved-section").style.display = "block";
    loadApprovedRequests();
  });
-
+ 
 function loadApprovedRequests() {
   fetch("http://localhost:8080/application/getApproved")
   
@@ -142,10 +220,6 @@ function loadApprovedRequests() {
             <td>${new Date(application.submittedAt).toLocaleDateString()}</td>
             <td>${application.status}</td>
             <td><button class="btn btn-info btn-sm">View</button></td>
-            <td>
-              <button class="btn btn-success btn-sm" data-id="${application.id}">Approve</button>
-              <button class="btn btn-danger btn-sm" data-id="${application.id}">Reject</button>
-            </td>
           `;
           tableBody.appendChild(row);
         });
@@ -156,6 +230,50 @@ function loadApprovedRequests() {
     .catch((error) => console.error("Error fetching data:", error));
 }
 
+
+document.getElementById('rejected-btn').addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent default link behavior
+
+  // Show the rejected section
+  const rejectedSection = document.getElementById('rejected-section');
+  rejectedSection.style.display = 'block';
+
+  // Clear previous data if any
+  const tableBody = document.getElementById('rejectedTableBody');
+  tableBody.innerHTML = '';
+
+  // Fetch rejected applications from API
+  fetch('http://localhost:8080/application/notaccepted')
+    .then(response => response.json())
+    .then(data => {
+      if (data.data && data.data.length > 0) {
+        data.data.forEach((application, index) => {
+          const row = document.createElement('tr');
+
+		  
+		  // Apply a different color for even and odd rows
+		            row.style.backgroundColor = index % 2 === 0 ? "blue" : "#0000FF80";
+
+          row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${application.user.name}</td>
+            <td>${application.id}</td>
+            <td>${application.businesstype}</td>
+            <td>${new Date(application.submittedAt).toLocaleDateString()}</td>
+            <td>${application.status}</td>
+          `;
+
+          tableBody.appendChild(row);
+        });
+      } else {
+        tableBody.innerHTML = '<tr><td colspan="6">No rejected applications found.</td></tr>';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching rejected applications:', error);
+      tableBody.innerHTML = '<tr><td colspan="6">Error loading data.</td></tr>';
+    });
+});
 
 
 // ========== PROFILE FORM ==========

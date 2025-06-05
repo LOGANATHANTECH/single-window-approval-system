@@ -46,4 +46,5 @@
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
     <fullyQualifiedTypeName name="com.adminavengers.singlewindow.handleesception.HandleApplicationException"/>
+    <fullyQualifiedTypeName name="com.adminavengers.singlewindow.entity.Status"/>
 </qualifiedTypeNameHistroy>

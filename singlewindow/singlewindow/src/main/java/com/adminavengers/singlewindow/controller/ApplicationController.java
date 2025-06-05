@@ -5,8 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-//import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +21,7 @@ import com.adminavengers.singlewindow.handleesception.HandleApplicationException
 import com.adminavengers.singlewindow.repository.ApplicationRepository;
 import com.adminavengers.singlewindow.repository.UserRepository;
 import com.adminavengers.singlewindow.responces.ResponseStructure;
-import com.adminavengers.singlewindow.service.ApplicationService;
+
 
 
 @RestController
@@ -119,9 +117,14 @@ public class ApplicationController {
     }
 //UPDATE APPLICATION
     //update status by id
-    @PutMapping("bystatus")
+    @PutMapping
     public int updateStatusById(@RequestBody UpdateStatus updateStatus){
-    	return applicationRepository.updateStatusById(updateStatus.getId(), Status.APPROVED);
+    	if(updateStatus.getStatus().toString().equals("APPROVED")) {
+    		return applicationRepository.updateStatusById(updateStatus.getId(), Status.APPROVED);
+    	}else {
+    		return applicationRepository.updateStatusById(updateStatus.getId(), Status.REJECTED);
+    	}
+    	
     }
     
     

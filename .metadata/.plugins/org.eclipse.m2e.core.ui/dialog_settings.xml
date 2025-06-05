@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\do_nont_touch\college"/>
 			<item value="D:\do_nont_touch\college\singlewindow"/>
 		</list>
 		<list key="projectNameTemplate">
