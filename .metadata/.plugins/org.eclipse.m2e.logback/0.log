@@ -1541,3 +1541,4 @@ org.eclipse.core.runtime.CoreException: Launch configuration SinglewindowApplica
 2025-06-04 16:02:07,246 [Worker-74: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2025-06-04 16:02:07,255 [Worker-74: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2025-06-04 16:02:07,557 [Worker-74: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\do_nont_touch\college\singlewindow\singlewindow\src\test\resources
+2025-06-07 06:58:30,949 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
