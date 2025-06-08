@@ -117,11 +117,11 @@ document.getElementById('signInForm').addEventListener('submit', function(event)
         if (data.status === 202) {
 			
 			// Local variable
-			   const userdata = data.data;
-
+			   const user = data.data;
+       			alert(user.name)
 			   // ✅ Store only this one variable to sessionStorage
-			   sessionStorage.setItem("userdata", JSON.stringify(userdata));
-			   
+		
+			   sessionStorage.setItem("userdata", JSON.stringify(user));
 			 
 
             alert(`Success: ${data.message}\nRedirecting to registration page...`);
