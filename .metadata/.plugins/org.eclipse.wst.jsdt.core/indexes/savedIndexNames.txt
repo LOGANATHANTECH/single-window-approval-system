@@ -1,7 +1,2 @@
 INDEX VERSION 1.4+D:\do_nont_touch\college\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 2009687511.index
-2180981964.index
-714431478.index
-4271411402.index
-33473334.index
-3680052679.index
