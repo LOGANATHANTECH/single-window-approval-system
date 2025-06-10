@@ -40,19 +40,25 @@
     },
     retina_detect: true
   });
+        // Function to show a specific section and hide others
+        function showSection(sectionId) {
+            const sections = ['home-section', 'apply-section', 'applications-section', 'profile-section'];
+            sections.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
 
-  function showSection(section) {
-    ['home', 'apply', 'applications', 'profile'].forEach(id => {
-      document.getElementById(id + '-section').classList.add('hidden');
-    });
-    document.getElementById(section + '-section').classList.remove('hidden');
-  }
+        // Show the home section on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('home-section');
+        });
 
   function logout() {
     if (confirm("Are you sure you want to log out?")) {
       localStorage.clear();
       sessionStorage.clear();
-      window.location.href = "html/user_login.html";
+      window.location.href = "user_login.html";
     }
   }
 
@@ -112,4 +118,30 @@ function updateStep(stepNumber, status) {
     badge.classList.add('bg-danger');
     step.classList.add('pending');
   }
+}
+
+
+function toggleProfile() {
+  const section = document.getElementById("profile-section");
+  section.classList.toggle("hidden");
+}
+
+let isEditing = false;
+
+function editProfile() {
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+
+  if (!isEditing) {
+    name.removeAttribute("disabled");
+    email.removeAttribute("disabled");
+    name.focus();
+  } else {
+    name.setAttribute("disabled", true);
+    email.setAttribute("disabled", true);
+    alert("Changes saved successfully!");
+    // Optionally, make API call here to save
+  }
+
+  isEditing = !isEditing;
 }
