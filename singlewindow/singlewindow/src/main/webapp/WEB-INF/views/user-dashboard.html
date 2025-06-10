@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Apply Section -->
+    <div id="apply-section" class="hidden mt-4">
+        <h4>📝 Apply for Approval</h4>
+        <form id="business-form" class="card p-4 mt-3" style="border-radius: 20px;">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Business Name</label>
+                    <input type="text" name="businessname" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Company Name</label>
+                    <input type="text" name="companyname" class="form-control" required>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Company Address</label>
+                    <textarea name="companyaddress" rows="2" class="form-control" required></textarea>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Business Type</label>
+                    <select name="businesstype" class="form-select" required>
+                        <option value="" disabled selected>--Select Type--</option>
+                        <option value="retail">Retail</option>
+                        <option value="service">Service</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="technology">Technology</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" name="phonenumber" class="form-control" pattern="[0-9]{10}" maxlength="10" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Description About Business</label>
+                    <textarea name="descriptionaboutbusiness" class="form-control" required></textarea>
+                </div>
+                <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-success px-4 mt-2">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const businessForm = document.getElementById('business-form');
+        
+        businessForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get the current user's ID from your session or local storage
+            const userId = localStorage.getItem('userId'); // Adjust this based on how you store user info
+            
+            if (!userId) {
+                alert('Please login to submit an application');
+                return;
+            }
+            
+            // Create the application object
+            const applicationData = {
+                user: {
+                    id: userId
+                },
+                businessname: this.businessname.value,
+                companyname: this.companyname.value,
+                companyaddress: this.companyaddress.value,
+                businesstype: this.businesstype.value,
+                phonenumber: this.phonenumber.value,
+                email: this.email.value,
+                descriptionaboutbusiness: this.descriptionaboutbusiness.value
+            };
+            
+            try {
+                const response = await fetch('/api/applications', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(applicationData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alert(result.message);
+                    businessForm.reset();
+                } else {
+                    alert(result.message || 'Error submitting application');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error submitting application. Please try again.');
+            }
+        });
+    });
+    </script>
+</body>
+</html> 

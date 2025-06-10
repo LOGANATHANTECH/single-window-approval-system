@@ -118,11 +118,13 @@ document.getElementById('signInForm').addEventListener('submit', function(event)
 			
 			// Local variable
 			   const user = data.data;
-       			alert(user.name)
+       			
 			   // ✅ Store only this one variable to sessionStorage
 		
 			   sessionStorage.setItem("userdata", JSON.stringify(user));
-			 
+				alert("hi");
+			   			   console.log(user);
+
 
             alert(`Success: ${data.message}\nRedirecting to registration page...`);
             window.location.href = 'user-dashboard2.html';
