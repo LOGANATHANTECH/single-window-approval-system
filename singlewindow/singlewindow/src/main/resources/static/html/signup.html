@@ -95,6 +95,9 @@
             transform: scale(1.05);
             box-shadow: 0px 5px 15px rgba(255, 65, 108, 0.5);
         }
+            input::placeholder, select::placeholder {
+        color: white;
+    }
 
         /* 🌟 Dark Mode Toggle */
         .dark-mode-toggle {
@@ -109,7 +112,9 @@
             cursor: pointer;
             font-size: 14px;
         }
-
+        #userForm::placeholder{
+            color: whitesmoke;
+        }
         /* 🌟 Responsive */
         @media (max-width: 420px) {
             .form-container {
@@ -184,6 +189,7 @@
             .then(data => {
                 alert("User registered successfully!");
                 console.log("Success:", data);
+                 window.location.href = "user_login.html";
             })
             .catch(error => {
                 alert("Error registering user.");
