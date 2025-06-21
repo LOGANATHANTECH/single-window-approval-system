@@ -129,26 +129,29 @@
   </section>
 
   <!-- Approved Applications Section -->
-  <section id="approved-section" class="section-content container my-4 p-4 border rounded shadow-lg" style="display: none;">
-    <h2 class="text-center mb-4">Approved Applications</h2>
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered">
-        <thead class="table-dark">
-          <tr>
-            <th>#</th>
-            <th>Applicant Name</th>
-            <th>Application ID</th>
-            <th>Department</th>
-            <th>Date Submitted</th>
-            <th>Status</th>
-            <th>View Document</th>
-   
-          </tr>
-        </thead>
-        <tbody id="approvedTableBody"></tbody>
-      </table>
-    </div>
-  </section>
+  <!-- Approved Applications Section -->
+<section id="approved-section" class="section-content container my-4 p-4 border rounded shadow-lg" style="display: none;">
+  <h2 class="text-center mb-4">✅ Approved Applications</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Applicant Name</th>
+          <th>Application ID</th>
+          <th>Department</th>
+          <th>Date Submitted</th>
+          <th>Status</th>
+          <th>View Document</th>
+        </tr>
+      </thead>
+      <tbody id="approvedTableBody">
+        <tr><td colspan="7">No data available.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 
 <!-- Rejected Applications Section -->
 <section id="rejected-section" class="section-content container my-4 p-4 border rounded shadow-lg" style="display: none;">
@@ -169,32 +172,26 @@
 </section>
 
   <!-- Profile section -->
-  <section id="profile-section" class="section-content" style="display: none;">
-    <h2>Profile</h2>
-    <section class="profile-setup">
-      <h2>Profile Settings</h2>
-      <div class="profile-container">
-        <div class="profile-pic">
-          <img id="profileImage" src="#" alt="Profile Picture">
-          <input type="file" id="uploadPic" accept="image/*" onchange="previewImage(event)">
-          <label for="uploadPic" class="upload-btn">Change Profile Picture</label>
-        </div>
-        <form id="profileForm">
-          <label for="fullName">Full Name:</label>
-          <input type="text" id="fullName" placeholder="Enter your full name" required>
-          <label for="email">Email:</label>
-          <input type="email" id="email" placeholder="Enter your email" required>
-          <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" placeholder="Enter your phone number" required>
-          <label for="password">New Password:</label>
-          <input type="password" id="password" placeholder="Enter new password">
-          <label for="confirmPassword">Confirm Password:</label>
-          <input type="password" id="confirmPassword" placeholder="Confirm new password">
-          <button type="submit">Save Changes</button>
-        </form>
+ <!-- ✅ Profile Section Only -->
+<!-- Profile Section -->
+<section id="profile-section" class="section-content" style="display: none;">
+  <div class="profile-container">
+    <div class="profile-card">
+      <img id="profile-image" src="https://via.placeholder.com/100" alt="Profile Photo" />
+
+      <div class="profile-details">
+        <p><strong>Name:</strong> <span id="profile-name">Loading...</span></p>
+        <p><strong>Email:</strong> <span id="profile-email">Loading...</span></p>
+        <p><strong>Role:</strong> <span id="profile-role">Loading...</span></p>
+        <p><strong>Created At:</strong> <span id="profile-created">Loading...</span></p>
       </div>
-    </section>
-  </section>
+    </div>
+  </div>
+</section>
+
+
+
+
 
   <script src="./javascript/Officer_dashboard.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

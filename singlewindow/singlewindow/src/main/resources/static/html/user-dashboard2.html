@@ -235,8 +235,13 @@
           headers:{"Content-Type":"application/json"},
           body: JSON.stringify(body)
         });
-        if (res.ok) window.location.href = "track_status.html";
-        else alert("Submission failed.");
+        if (res.ok) {
+        	  alert("Application successfully submitted! Please check the status after 7 days.");
+        	  window.location.href = "user-dashboard2.html";
+        	} else {
+        	  alert("Submission failed.");
+        	}
+
       } catch {
         alert("Error submitting.");
       }

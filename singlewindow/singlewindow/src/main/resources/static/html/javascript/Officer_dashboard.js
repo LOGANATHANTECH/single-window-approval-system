@@ -1,12 +1,10 @@
 // ========== GLOBAL VARIABLES ==========
-
 const notificationContainer = createNotificationContainer();
 
 // ========== ON LOAD ==========
 document.addEventListener("DOMContentLoaded", () => {
   initNavigation();
   loadApprovalRequests();
-  initProfileForm();
   initLogout();
   showSection("home-section");
 });
@@ -28,6 +26,9 @@ function initNavigation() {
       button.addEventListener("click", (e) => {
         e.preventDefault();
         showSection(sectionId);
+        if (sectionId === "profile-section") {
+          loadProfile();
+        }
       });
     }
   });
@@ -40,7 +41,7 @@ function showSection(sectionId) {
 
   const targetSection = document.getElementById(sectionId);
   if (targetSection) {
-    targetSection.style.display = "block"; // Show the requested section
+    targetSection.style.display = "block"; // Show selected section
   }
 }
 
@@ -74,13 +75,11 @@ function loadApprovalRequests() {
     .then(response => response.json())
     .then(data => {
       const tableBody = document.getElementById("approvalTableBody");
-      tableBody.innerHTML = ''; // Clear previous rows before loading
+      tableBody.innerHTML = '';
 
       if (data.data && data.data.length > 0) {
         data.data.forEach((application, index) => {
           const row = document.createElement("tr");
-
-          // Apply a different color for even and odd rows
           row.style.backgroundColor = index % 2 === 0 ? "blue" : "#0000FF80";
 
           row.innerHTML = `
@@ -96,11 +95,9 @@ function loadApprovalRequests() {
               <button class="btn btn-danger btn-sm reject-btn" data-id="${application.id}">Reject</button>
             </td>
           `;
-
           tableBody.appendChild(row);
         });
 
-        // Add event listeners for Approve buttons
         document.querySelectorAll('.approve-btn').forEach(button => {
           button.addEventListener('click', function () {
             const appId = this.getAttribute('data-id');
@@ -108,7 +105,6 @@ function loadApprovalRequests() {
           });
         });
 
-        // Add event listeners for Reject buttons
         document.querySelectorAll('.reject-btn').forEach(button => {
           button.addEventListener('click', function () {
             const appId = this.getAttribute('data-id');
@@ -123,7 +119,6 @@ function loadApprovalRequests() {
     .catch(error => console.error("Error fetching data:", error));
 }
 
-// Function to approve application and remove from list
 function approveApplication(appId, buttonElement) {
   fetch('http://localhost:8080/application', {
     method: 'PUT',
@@ -150,7 +145,6 @@ function approveApplication(appId, buttonElement) {
     });
 }
 
-// Function to rejecte application and remove from list
 function rejectApplication(appId, buttonElement) {
   fetch('http://localhost:8080/application', {
     method: 'PUT',
@@ -159,7 +153,7 @@ function rejectApplication(appId, buttonElement) {
     },
     body: JSON.stringify({
       id: Number(appId),
-      status: "REJECTED"  // or whatever your backend expects
+      status: "REJECTED"
     })
   })
     .then(response => {
@@ -177,82 +171,64 @@ function rejectApplication(appId, buttonElement) {
     });
 }
 
-// Call this once page loads to populate table
-loadApprovalRequests();
-
-
 // ========== APPROVED REQUESTS ==========
-document.addEventListener("DOMContentLoaded", () => {
-   document.getElementById("approved-section").style.display = "block";
-   loadApprovedRequests();
- });
- 
-function loadApprovedRequests() {
+// ========== APPROVED REQUESTS ==========
+document.getElementById("approved-btn").addEventListener("click", function (event) {
+  event.preventDefault();
+  showSection("approved-section");
+
+  const tableBody = document.getElementById("approvedTableBody");
+  tableBody.innerHTML = `<tr><td colspan="7">Loading...</td></tr>`;
+
   fetch("http://localhost:8080/application/getApproved")
-  
     .then((response) => response.json())
     .then((data) => {
-      const tableBody = document.getElementById("approvedTableBody");
-      
-      // Clear existing rows to prevent duplication
-      tableBody.innerHTML = "";
-      
+      tableBody.innerHTML = ""; // Clear loading
+
       if (data.data && data.data.length > 0) {
         data.data.forEach((application, index) => {
           const row = document.createElement("tr");
-
-          // Apply a different color for even and odd rows:
-          if (index % 2 === 0) {
-            // Even rows: solid blue background with white text.
-            row.style.backgroundColor = "blue";
-            row.style.color = "white";
-          } else {
-            // Odd rows: translucent blue background with black text.
-            row.style.backgroundColor = "#0000FF80";
-            row.style.color = "black";
-          }
+          row.style.backgroundColor = index % 2 === 0 ? "blue" : "#0000FF80";; // Light gray rows
 
           row.innerHTML = `
             <td>${index + 1}</td>
-            <td>${application.user.name}</td>
+            <td>${application.user?.name || "N/A"}</td>
             <td>${application.id}</td>
             <td>${application.businesstype}</td>
             <td>${new Date(application.submittedAt).toLocaleDateString()}</td>
-            <td>${application.status}</td>
+            <td><span class="badge bg-success">${application.status}</span></td>
             <td><button class="btn btn-info btn-sm">View</button></td>
           `;
+
           tableBody.appendChild(row);
         });
       } else {
-        console.warn("No approved applications found.");
+        tableBody.innerHTML = `<tr><td colspan="7">No approved applications found.</td></tr>`;
       }
     })
-    .catch((error) => console.error("Error fetching data:", error));
-}
+    .catch((error) => {
+      console.error("Error fetching approved applications:", error);
+      tableBody.innerHTML = `<tr><td colspan="7">Error loading data.</td></tr>`;
+      alert("Failed to load approved applications.");
+    });
+});
 
 
-document.getElementById('rejected-btn').addEventListener('click', function(event) {
-  event.preventDefault(); // Prevent default link behavior
+// ========== REJECTED REQUESTS ==========
+document.getElementById('rejected-btn').addEventListener('click', function (event) {
+  event.preventDefault();
+  showSection("rejected-section");
 
-  // Show the rejected section
-  const rejectedSection = document.getElementById('rejected-section');
-  rejectedSection.style.display = 'block';
-
-  // Clear previous data if any
   const tableBody = document.getElementById('rejectedTableBody');
   tableBody.innerHTML = '';
 
-  // Fetch rejected applications from API
   fetch('http://localhost:8080/application/notaccepted')
     .then(response => response.json())
     .then(data => {
       if (data.data && data.data.length > 0) {
         data.data.forEach((application, index) => {
           const row = document.createElement('tr');
-
-		  
-		  // Apply a different color for even and odd rows
-		            row.style.backgroundColor = index % 2 === 0 ? "blue" : "#0000FF80";
+          row.style.backgroundColor = index % 2 === 0 ? "blue" : "#0000FF80";
 
           row.innerHTML = `
             <td>${index + 1}</td>
@@ -275,38 +251,45 @@ document.getElementById('rejected-btn').addEventListener('click', function(event
     });
 });
 
+if (sectionId === "profile-section") {
+  loadProfile();
+}
+
+
 
 // ========== PROFILE FORM ==========
-function initProfileForm() {
-  const form = document.getElementById("profileForm");
-  if (!form) return;
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
 
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
+document.getElementById("profile-link").addEventListener("click", function (e) {
+  e.preventDefault();
+  hideAllSections();
+  document.getElementById("profile-section").style.display = "flex";
 
-    alert("Profile updated successfully!");
-  });
+  fetch("/api/users/profile", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      // Add Authorization header if needed
+      // "Authorization": "Bearer " + token
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch profile");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      document.getElementById("profile-name").textContent = data.name;
+      document.getElementById("profile-email").textContent = data.email;
+      document.getElementById("profile-role").textContent = data.role;
+      document.getElementById("profile-created").textContent = new Date(data.createdAt).toLocaleString();
+    })
+    .catch((error) => {
+      console.error("Profile fetch error:", error);
+    });
+});
 
-  const upload = document.getElementById("uploadPic");
-  if (upload) {
-    upload.addEventListener("change", previewImage);
-  }
-}
-
-function previewImage(event) {
-  const reader = new FileReader();
-  reader.onload = () => {
-    document.getElementById("profileImage").src = reader.result;
-  };
-  reader.readAsDataURL(event.target.files[0]);
-}
 
 // ========== LOGOUT ==========
 function initLogout() {
@@ -319,75 +302,3 @@ function initLogout() {
     });
   }
 }
-
-// pie chart section
-  document.addEventListener("DOMContentLoaded", function () {
-
-    // Chart 1: Approval Status
-    new Chart(document.getElementById('approvalChart'), {
-      type: 'pie',
-      data: {
-        labels: ['Approved', 'Rejected', 'Pending'],
-        datasets: [{
-          label: 'Approvals',
-          data: [50, 20, 30],
-          backgroundColor: ['#4caf50', '#f44336', '#ff9800']
-        }]
-      }
-    });
-
-    // Chart 2: Pending Requests
-    new Chart(document.getElementById('pendingChart'), {
-      type: 'pie',
-      data: {
-        labels: ['Dept A', 'Dept B', 'Dept C'],
-        datasets: [{
-          label: 'Pending',
-          data: [10, 15, 5],
-          backgroundColor: ['#03a9f4', '#00bcd4', '#009688']
-        }]
-      }
-    });
-
-    // Chart 3: Rejection Reasons
-    new Chart(document.getElementById('rejectedChart'), {
-      type: 'pie',
-      data: {
-        labels: ['Incomplete Docs', 'Invalid Info', 'Policy Issue'],
-        datasets: [{
-          label: 'Rejections',
-          data: [12, 8, 10],
-          backgroundColor: ['#e91e63', '#9c27b0', '#673ab7']
-        }]
-      }
-    });
-
-    // Chart 4: Department-Wise Approvals
-    new Chart(document.getElementById('departmentChart'), {
-      type: 'pie',
-      data: {
-        labels: ['Health', 'Education', 'Transport', 'Housing'],
-        datasets: [{
-          label: 'By Dept',
-          data: [20, 25, 15, 10],
-          backgroundColor: ['#ff5722', '#ffc107', '#8bc34a', '#00bcd4']
-        }]
-      }
-    });
-
-    // Chart 5: Monthly Approval Trends
-    new Chart(document.getElementById('monthlyChart'), {
-      type: 'pie',
-      data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr'],
-        datasets: [{
-          label: 'Monthly',
-          data: [10, 15, 12, 8],
-          backgroundColor: ['#cddc39', '#607d8b', '#9e9e9e', '#795548']
-        }]
-      }
-    });
-
-  });
-
-

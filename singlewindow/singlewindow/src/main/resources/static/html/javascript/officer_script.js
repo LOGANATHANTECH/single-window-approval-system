@@ -62,6 +62,7 @@ verifyOtpBtn.addEventListener("click", () => {
   }
 });
 
+
 // ========== Sign In Form Submission ==========
 const form = document.getElementById("iamofficer");
 
@@ -75,6 +76,12 @@ form.addEventListener("submit", function (e) {
   formData.forEach((value, key) => {
     jsonData[key] = value;
   });
+
+  // ✅ Store officer ID in sessionStorage
+  if (jsonData.id) {
+    sessionStorage.setItem("officerId", jsonData.id);
+    console.log("Officer ID stored in sessionStorage:", jsonData.id);
+  }
 
   // Debugging: Check JSON data in console
   console.log("Form Data as JSON:", jsonData);

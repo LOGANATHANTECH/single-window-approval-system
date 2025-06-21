@@ -535,4 +535,82 @@ button:hover {
     display: block;
   }
   
+  /*  profile */
+  
+  /* ========== PROFILE SECTION ========== */
+  
+  #profile-section {
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #6c47ff, #2a34d6);
+  padding: 50px 0;
+  color: #fff;
+  text-align: center;
+}
+  
+#profile-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #6c47ff, #2a34d6); /* Your project colors */
+  padding: 50px 0;
+  color: #fff;
+  text-align: center;
+}
+
+/* White card inside gradient section */
+.profile-box {
+  width: 40%;
+  height: 50vh;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Section header */
+.profile-box h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2a34d6;
+  margin-bottom: 20px;
+}
+
+/* Profile info block */
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Profile image */
+.profile-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #6c47ff;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(108, 71, 255, 0.5);
+}
+
+/* Profile data (name, email, role, etc.) */
+.profile-card p {
+  font-size: 16px;
+  margin: 2px 0;
+  color: #000;
+}
+
+.profile-card p strong {
+  color: #2a34d6;
+}
+  
+  
   
